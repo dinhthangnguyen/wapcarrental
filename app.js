@@ -17,8 +17,13 @@ app.use("/owners",ownerRouter);
 app.use("/renters",renterRouter);
 
 
+
+app.use("/rent", (req,res,next)=> {
+    res.sendFile(path.join(__dirname,"/public/view/rent/rent.html"));
+})
+
 app.use("/", (req,res,next)=> {
-    res.sendFile(path.join(__dirname,"/public/view/index.html"));
+    res.sendFile(path.join(__dirname,"/public/view/home/index.html"));
 })
 
 
