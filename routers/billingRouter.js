@@ -28,7 +28,7 @@ router.get("/track-order", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.get("/detail/:id", async (req,res,next)=> {
+router.get("/:id", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "billing", "detail.html"));

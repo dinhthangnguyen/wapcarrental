@@ -40,7 +40,7 @@ function addRowToTable(id, billing, color) {
 }
 
 function openDetail(id, billingId)  {
-    window.location.href = `/owners/${id}/billing/${billingId}`
+    window.location.href = `/owners/${id}/billings/${billingId}`
 }
 
 window.onload = loadData;

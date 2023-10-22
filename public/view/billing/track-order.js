@@ -10,6 +10,6 @@ document.getElementById("btnSearch").addEventListener("click", async (event) => 
     let response = await fetch(`http://localhost:3000/billings/api/track-order/${orderNumber}`);
     if(response.ok){
         let billing = await response.json();
-        window.location.href = `http://localhost:3000/billings/detail/${billing.id}`
+        window.location.href = `http://localhost:3000/billings/${billing.id}`
     }
 })

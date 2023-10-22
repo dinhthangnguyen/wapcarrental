@@ -70,7 +70,7 @@ document.getElementById('btnManagecar').addEventListener("click", (event) => {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
     let id = paths[2];
-    window.location.href = `http://localhost:3000/owners/${id}/manage-car`;
+    window.location.href = `http://localhost:3000/owners/${id}/cars`;
 })
 
 document.getElementById('btnManageBilling').addEventListener("click", (event) => {
@@ -78,7 +78,7 @@ document.getElementById('btnManageBilling').addEventListener("click", (event) =>
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
     let id = paths[2];
-    window.location.href = `http://localhost:3000/owners/${id}/manage-billing`;
+    window.location.href = `http://localhost:3000/owners/${id}/billings`;
 })
 
 document.getElementById('btnDeleteAccount').addEventListener("click", (event) => {

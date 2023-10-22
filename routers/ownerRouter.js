@@ -32,7 +32,7 @@ router.get("/register", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.get("/:id/manage-car", async (req,res,next)=> {
+router.get("/:id/cars", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managecar.html"));
@@ -44,7 +44,7 @@ router.get("/:id/manage-car", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.get("/:id/billing/:billingId", async (req,res,next)=> {
+router.get("/:id/billings/:billingId", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailbilling.html"));
@@ -56,7 +56,7 @@ router.get("/:id/billing/:billingId", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.get("/:id/manage-billing", async (req,res,next)=> {
+router.get("/:id/billings", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managebilling.html"));
