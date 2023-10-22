@@ -100,6 +100,14 @@ class Owner {
     getBill = function (params) {
 
     }
+
+    getIdByEmail(email){
+        let id;
+        let owner = owners.find(o => o.email === email);
+        if(owner)
+            id = owner.id;
+        return id;
+    }
 }
 
 module.exports = Owner;

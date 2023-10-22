@@ -1,0 +1,25 @@
+<form id ="verify-form">
+    <div class="form-group">
+        <label for="email" class="form-label mt-4">Email address</label>
+        <input type="email" class="form-control" id="email"
+            aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+            else.</small>
+    </div>
+    <button type="submit" id="owner-login" class="btn btn-primary">Submit</button>
+</form>
+<script>
+    document.getElementById("owner-login").addEventListener("click", async () => {
+        var email = document.getElementById("email").value;
+        let obj = { email };
+        let setting = {
+            method: "POST",
+            body: JSON.stringify(obj),
+            headers: { "Content-Type": 'application/json' }
+        }
+        let response = await fetch("http://localhost:3000/owner/login", setting);
+        if (response.ok) {
+            
+        } else alert("Error " + response.status);
+    })
+</script>

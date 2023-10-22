@@ -182,7 +182,7 @@ class Car {
         cars.push(car);
     }
 
-     getAvailableDays() {
+    getAvailableDays() {
         return this.availableDates;
     }
 
