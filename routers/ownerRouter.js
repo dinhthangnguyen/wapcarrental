@@ -12,4 +12,21 @@ router.get('/:id', ownerController.getById);
 
 router.put('/:id', ownerController.updateOwner);
 
+router.use("/view/detail/:id", async (req,res,next)=> {
+    let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
+    let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "manage.html"));
+
+    let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    res.send(htmlContent);
+});
+
+router.use("/view/login", async (req,res,next)=> {
+    console.log(path.join(__dirname, "public", "view", "common", "index.html"));
+    let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
+    let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "index.html"));
+
+    let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    res.send(htmlContent);
+});
+
 module.exports = router;
