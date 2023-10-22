@@ -170,7 +170,10 @@ let cars = [
     },
 ];
 
+
 class Car {
+    static #all = "All";
+
     constructor(id, make, model, year, price, ownerId, city) {
         this.id = id;
         this.make = make;
@@ -188,31 +191,79 @@ class Car {
         return cars;
     }
 
+    static getCities() {
+        let cities = [...new Set(cars.map(e => e.city))];
+        cities.push(this.#all);
+        cities.sort();
+        return cities;
+    }
+
     static getMakesByCity(city) {
-        let array = cars.filter(e => e.city.toLowerCase() == city.toLowerCase()).map(e => e.make);
+        let array = cars.filter(e => {
+            if (city.toLowerCase() == this.#all.toLowerCase()) {
+                return true;
+            }
+            return e.city.toLowerCase() === city.toLowerCase()
+        }).map(e => e.make);
         let makes = [...new Set(array)];
+        makes.push(this.#all);
         makes.sort();
         return makes;
     }
 
-    static getCities() {
-        let cities = [...new Set(cars.map(e => e.city))];
-        cities.sort();
-        return cities;
-    }
 
     static getModels(city, make) {
         console.log(city);
 
         let array = cars
-        .filter(car => car.city.toLowerCase() === city.toLowerCase())
-        .filter(car => car.make.toLowerCase() === make.toLowerCase())
-        .map(e => e.model);
+            .filter(car => {
+                if (city.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.city.toLowerCase() === city.toLowerCase()
+            })
+            .filter(car => {
+                if (make.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.make.toLowerCase() === make.toLowerCase()
+            })
+            .map(e => e.model);
 
-        console.log(array);
         let models = [... new Set(array)];
         models.sort();
+        models.splice(0,0,this.#all);
         return models;
+    }
+
+    static getYears(city, make, model) {
+        console.log(city);
+
+        let array = cars
+            .filter(car => {
+                if (city.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.city.toLowerCase() === city.toLowerCase()
+            })
+            .filter(car => {
+                if (make.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.make.toLowerCase() === make.toLowerCase()
+            })
+            .filter(car => {
+                if (model.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.model.toLowerCase() === model.toLowerCase()
+            })
+            .map(e => e.year);
+
+        let years = [... new Set(array)];
+        years.sort();
+        years.splice(0,0,this.#all);
+        return years;
     }
 
     updateDates(dates) {

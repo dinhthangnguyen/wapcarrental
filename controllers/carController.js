@@ -24,6 +24,14 @@ let carController = {
             res.status(400).json({"message": "Bad request, please provide city & make"})
         }
     },
+    getYears: function(req,res,next) {
+        let {city, make, model} = req.query;
+        if (city && make && model) {
+            res.status(200).json(Car.getYears(city, make, model));            
+        } else {
+            res.status(400).json({"message": "Bad request, please provide city & make & model"})
+        }
+    },
 }
 
 module.exports = carController;

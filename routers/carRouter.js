@@ -7,6 +7,7 @@ carRouter.get('/',carController.getAllCars);
 carRouter.get('/cities',carController.getCities);
 carRouter.get('/makes',carController.getMakesByCity);
 carRouter.get('/models',carController.getModels);
+carRouter.get('/years',carController.getYears);
 
 
 module.exports = carRouter;

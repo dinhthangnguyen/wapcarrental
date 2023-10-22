@@ -63,6 +63,31 @@ async function loadModels(city, make) {
             option.setAttribute("id", models[i]);
             modelSelect.appendChild(option);
         }
+        loadYears(city, make,modelSelect.value);
+    } else {
+        alert("Error: something went wrong: " + response.status);
+    }
+}
+
+document.getElementById("modelSelect").addEventListener("change",()=> {
+    let make = document.getElementById("makeSelect").value;
+    let city = document.getElementById("citySelect").value;
+    let model = document.getElementById("modelSelect").value;
+    loadYears(city, make, model);
+});
+
+async function loadYears(city, make, model) {
+    let response = await fetch(`${serverUrl}/cars/years?city=${city}&make=${make}&model=${model}`);
+    if (response.ok) {
+        let years = await response.json();
+        let yearSelect = document.getElementById("yearSelect");
+        yearSelect.innerHTML = "";
+        for(let i = 0;i< years.length;i++) {
+            let option = document.createElement("option");
+            option.appendChild(document.createTextNode(years[i]));
+            option.setAttribute("id", years[i]);
+            yearSelect.appendChild(option);
+        }
     } else {
         alert("Error: something went wrong: " + response.status);
     }
