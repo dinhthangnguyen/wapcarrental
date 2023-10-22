@@ -4,7 +4,23 @@
         <input type="email" class="form-control disable" id="email"
             aria-describedby="emailHelp" placeholder="Enter email">
     </div>
-    <button type="submit" id="owner-login" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+        <label for="name" class="form-label mt-4">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+        <label for="phone" class="form-label mt-4">Phone</label>
+        <input type="tel" class="form-control" id="name" placeholder="Enter Phone">
+    </div>
+    <div class="form-group">
+        <label for="billingAddress" class="form-label mt-4">Phone</label>
+        <input type="tel" class="form-control" id="billingAddress" placeholder="Enter Billing Address">
+    </div>
+    <div class="form-group">
+        <label for="creditCard" class="form-label mt-4">Credit Card</label>
+        <input type="tel" class="form-control" id="creditCard" placeholder="Enter Credit Card">
+    </div>
+    <button type="submit" id="update" class="btn btn-primary">Submit</button>
 </form>
 <script>
     document.getElementById("owner-login").addEventListener("click", () => {

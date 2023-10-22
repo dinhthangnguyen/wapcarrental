@@ -6,7 +6,7 @@
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
             else.</small>
     </div>
-    <button type="submit" id="owner-login" class="btn btn-primary">Submit</button>
+    <button type="button" id="owner-login" class="btn btn-primary">Submit</button>
 </form>
 <script>
     document.getElementById("owner-login").addEventListener("click", async () => {
@@ -17,9 +17,24 @@
             body: JSON.stringify(obj),
             headers: { "Content-Type": 'application/json' }
         }
-        let response = await fetch("http://localhost:3000/owner/login", setting);
+        try {
+        let response = await fetch("http://localhost:3000/owner/api/login", setting);
+
         if (response.ok) {
-            
-        } else alert("Error " + response.status);
+            let id = await response.body.id;
+            await fetch(`http://localhost:3000/owner/${id}`);
+            // var redirectResponse = await fetch(`http://localhost:3000/owner/${id}`);
+
+            // if (redirectResponse.ok) {
+            //     document.body.innerHTML = await redirectResponse.text();
+            // } else {
+            //     console.error('Error in redirect response:', redirectResponse.status);
+            // }
+        } else {
+            console.error('Error:', response.status);
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
     })
 </script>
