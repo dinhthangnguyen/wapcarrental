@@ -2,13 +2,8 @@ const Car = require('../models/Car');
 
 
 let carController = {
-    getCars: function(req,res,next) {
-        let {city, make, model, year} = req.query;
-        if (city && make && model && year) {
-            res.status(200).json(Car.getCars(city, make, model, year));            
-        } else {
-            res.status(400).json({"message": "Bad request, please provide city & make & model & year"})
-        }
+    getCities: function(req,res,next) {
+        res.status(200).json(Car.getCities());
     },
     getMakesByCity: function(req,res,next) {
         let city = req.query.city;
@@ -17,9 +12,6 @@ let carController = {
         } else {
             res.status(400).json({"message": "Bad request, please provide city"})
         }
-    },
-    getCities: function(req,res,next) {
-        res.status(200).json(Car.getCities());
     },
     getModels: function(req,res,next) {
         let {city, make} = req.query;
@@ -35,6 +27,22 @@ let carController = {
             res.status(200).json(Car.getYears(city, make, model));            
         } else {
             res.status(400).json({"message": "Bad request, please provide city & make & model"})
+        }
+    },
+    getCars: function(req,res,next) {
+        let {city, make, model, year} = req.query;
+        if (city && make && model && year) {
+            res.status(200).json(Car.getCars(city, make, model, year));            
+        } else {
+            res.status(400).json({"message": "Bad request, please provide city & make & model & year"})
+        }
+    },
+    getCar: function(req,res,next) {
+        let {id} = req.param;
+        if (id) {
+            res.status(200).json(Car.getCar(id));            
+        } else {
+            res.status(400).json({"message": "Bad request, please provide id"})
         }
     },
 }

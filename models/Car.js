@@ -318,6 +318,10 @@ class Car {
         return array;
     }
 
+    static getCar(id) {
+        return cars.find(e => e === id);
+    }
+    
     createCar(car) {
         cars.push(car);
     }

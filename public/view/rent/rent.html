@@ -1,115 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
+    <div class="row">
+        <form>
+            <fieldset>
+                <legend>What do you want to rent?</legend>
+                <div class="form-group">
+                    <label for="citySelect" class="form-label mt-4">City</label>
+                    <select class="form-select" id="citySelect">
+                    </select>
+                </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prius Rental Service</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css"
-        integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
-    <link rel="stylesheet" href="/view/rent/style.css">
+                <div class="form-group">
+                    <label for="makeSelect" class="form-label mt-4">Make</label>
+                    <select class="form-select" id="makeSelect">
+                    </select>
+                </div>
 
-</head>
+                <div class="form-group">
+                    <label for="modelSelect" class="form-label mt-4">Model</label>
+                    <select class="form-select" id="modelSelect">
+                    </select>
+                </div>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Prius</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/owners/view/login">Manage
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/rent">Rent A Car</a>
-                        <span class="visually-hidden">(current)</span>
 
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
+                <div class="form-group">
+                    <label for="yearSelect" class="form-label mt-4">Year</label>
+                    <select class="form-select" id="yearSelect">
+                    </select>
+                </div>
+            </fieldset>
+        </form>
 
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
+    </div>
 
     <div class="container">
         <div class="row">
-            <form>
-                <fieldset>
-                    <legend>What do you want to rent?</legend>
-                    <div class="form-group">
-                        <label for="citySelect" class="form-label mt-4">City</label>
-                        <select class="form-select" id="citySelect">
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="makeSelect" class="form-label mt-4">Make</label>
-                        <select class="form-select" id="makeSelect">
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="modelSelect" class="form-label mt-4">Model</label>
-                        <select class="form-select" id="modelSelect">
-                        </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="yearSelect" class="form-label mt-4">Year</label>
-                        <select class="form-select" id="yearSelect">
-                        </select>
-                    </div>
-                </fieldset>
-            </form>
-
-          
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <h2 class="text-center">Available cars</h2>
-                <table class="table table-hover">
-                    <thead>
-                      <tr>
+            <h2 class="text-center">Available cars</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
                         <th scope="col">City</th>
                         <th scope="col">Make</th>
                         <th scope="col">Model</th>
                         <th scope="col">Year</th>
                         <th scope="col">Price per Day</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody">
-                    
-                    </tbody>
-                  </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-        <script src="/view/rent/rent.js"></script>
-
-</body>
-
-</html>
+</div>
