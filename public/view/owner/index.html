@@ -6,10 +6,16 @@
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
             else.</small>
     </div>
-    <button type="button" id="owner-login" class="btn btn-primary">Submit</button>
+    <button type="submit" id="owner-login" class="btn btn-primary">Submit</button>
 </form>
 <script>
-    document.getElementById("owner-login").addEventListener("click", async () => {
+    document.getElementById("owner-login").addEventListener("click", async (event) => {
+        // Prevent the default form submission behavior
+        if (!document.getElementById('verify-form').checkValidity()) {
+            return;
+        }
+        event.preventDefault();
+
         var email = document.getElementById("email").value;
         let obj = { email };
         let setting = {
@@ -18,23 +24,18 @@
             headers: { "Content-Type": 'application/json' }
         }
         try {
-        let response = await fetch("http://localhost:3000/owner/api/login", setting);
-
+        let response = await fetch("http://localhost:3000/owners/login", setting);
         if (response.ok) {
-            let id = await response.body.id;
-            await fetch(`http://localhost:3000/owner/${id}`);
-            // var redirectResponse = await fetch(`http://localhost:3000/owner/${id}`);
-
-            // if (redirectResponse.ok) {
-            //     document.body.innerHTML = await redirectResponse.text();
-            // } else {
-            //     console.error('Error in redirect response:', redirectResponse.status);
-            // }
+            if (response.redirected) {
+            // The 'url' property contains the redirected URL
+                window.location.href = response.url;
+            }
         } else {
-            console.error('Error:', response.status);
+            console.log(response);
+            document.getElementById('emailHelp').textContent = response.message;
         }
-    } catch (error) {
+        } catch (error) {
         console.error('Fetch error:', error);
-    }
+        }
     })
 </script>

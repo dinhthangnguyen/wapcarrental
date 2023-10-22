@@ -6,6 +6,10 @@ const router = express.Router();
 
 const ownerController = require('../controllers/ownerController');
 
-router.post('/api/login', ownerController.login);
+router.post('/login', ownerController.login);
+
+router.get('/:id', ownerController.getById);
+
+router.put('/:id', ownerController.updateOwner);
 
 module.exports = router;
