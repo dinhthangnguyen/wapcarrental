@@ -24,14 +24,49 @@ let ownerController = {
             res.status(404).json({ message: "owner not found."});
         }
     },
-    updateOwner: function(req, res, next){
+    getCarsById: function(req, res, next){
         let id = parseInt(req.params.id);
+        let cars = Owner.getCarsById(id);
+        if(cars){
+            res.status(200).json(cars);
+        } else{
+            res.status(404).json({ message: "owner not found."});
+        }
+    },
+    updateOwner: function(req, res, next){
+        let { name, phone, billingAddress , zip, email, creditCard} = req.body;
+        id = parseInt(req.params.id);
 
-        let updatedStudent = new Owner(id, req.body.name, req.body.phone, req.body.billingAddress, req.body.zip, req.body.email, req.body.creditCard).update();
-        if(updatedStudent){
-            res.status(200).json(updatedStudent);
+        let updatedOwner = new Owner(id, name, phone, billingAddress , zip, email, creditCard).update();
+        if(updatedOwner){
+            res.status(200).json(updatedOwner);
         } else{
             res.status(404).json({ message: "student not found."});
+        }
+    },
+    registerOwner: function(req, res, next){      
+        let { id, name, phone, billingAddress , zip, email, creditCard} = req.body;
+        id = Owner.getMaxId() + 1;
+        
+        if(id && name && phone && email){
+            if(Owner.getIdByEmail(email)) {
+                res.status(400).json({message: "Email existed."});
+            } else{
+                let newOwner = new Owner(id, name, phone, billingAddress , zip, email, creditCard).create();
+                res.status(201).json(newOwner);
+            }
+        } else {
+            res.status(400).json({message: "Provide all data."});
+        }
+    },
+    deleteOwner: function(req, res, next){
+        let id = parseInt(req.params.id);
+
+        let deletedOwner = Owner.removeById(id);
+        if(deletedOwner){
+            res.status(200).json(deletedOwner);
+        } else{
+            res.status(404).json({ message: "Owner not found."});
         }
     },
 }
