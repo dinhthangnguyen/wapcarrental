@@ -27,7 +27,7 @@ let billingController = {
         let id = parseInt(req.params.id);
         if(id){
             let billing = Billing.getById(id);
-            if(billing.status != Billing.Status.Unpaid)
+            if(billing && billing.status != Billing.Status.Unpaid)
                 res.status(500).json({ message: "Invalid Status"});
             else{
                 billing = billing.pay();
@@ -43,7 +43,7 @@ let billingController = {
         let id = parseInt(req.params.id);
         if(id){
             let billing = Billing.getById(id);
-            if(billing.status != Billing.Status.Paid)
+            if(billing && billing.status != Billing.Status.Paid)
                 res.status(500).json({ message: "Invalid Status"});
             else{
                 billing = billing.confirmPay();
@@ -59,7 +59,7 @@ let billingController = {
         let id = parseInt(req.params.id);
         if(id){
             let billing = Billing.getById(id);
-            if(billing.status === Billing.Status.Closed || billing.status === Billing.Status.Canceled)
+            if(billing && (billing.status === Billing.Status.Closed || billing.status === Billing.Status.Canceled))
                 res.status(500).json({ message: "Invalid Status"});
             else{
                 billing = billing.cancelPay();
