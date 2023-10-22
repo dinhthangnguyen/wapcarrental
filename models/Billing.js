@@ -55,6 +55,20 @@ class Billing {
         billing.renter = Renter.getById(billing.renterId);
         billing.total = billing.car.price;
     }
+
+    static generateId() {
+        let max = renters.map(o => o.id).reduce((a,b)=> {
+            if (a > b) {
+                return a;
+            }
+            return b;
+        });
+        return max +1;
+    }
+
+    create() {
+        billings.push(this);
+    }
 }
 
 module.exports = Billing;

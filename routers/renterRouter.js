@@ -5,6 +5,7 @@ const path = require('path');
 const renterRouter = express.Router();
 const renterController = require('../controllers/renterController');
 
+renterRouter.post("/api",renterController.rent);
 
 renterRouter.get("/", async (req, res, next) => {
     let frameSet = await fsPromise.readFile(path.join(__dirname, "../public/view/common/index.html"));
