@@ -18,7 +18,7 @@ router.post('/api', ownerController.registerOwner);
 
 router.delete('/api/:id', ownerController.deleteOwner);
 
-router.use("/register", async (req,res,next)=> {
+router.get("/register", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "register.html"));
@@ -30,7 +30,7 @@ router.use("/register", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.use("/:id/manage-car", async (req,res,next)=> {
+router.get("/:id/manage-car", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managecar.html"));
@@ -42,7 +42,7 @@ router.use("/:id/manage-car", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.use("/:id", async (req,res,next)=> {
+router.get("/:id", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "manage.html"));
@@ -54,7 +54,7 @@ router.use("/:id", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.use("/", async (req,res,next)=> {
+router.get("/", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "index.html"));

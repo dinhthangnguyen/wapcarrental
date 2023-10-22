@@ -10,7 +10,7 @@ router.get('/api/:id', billingController.getById);
 
 router.get('/api/track-order/:numberOrder', billingController.getByOrderNumber);
 
-router.use("/track-order", async (req,res,next)=> {
+router.get("/track-order", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "billing", "track-order.html"));
@@ -22,7 +22,7 @@ router.use("/track-order", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.use("/detail/:id", async (req,res,next)=> {
+router.get("/detail/:id", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "billing", "detail.html"));
