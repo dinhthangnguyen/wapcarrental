@@ -1,4 +1,4 @@
-document.getElementById("owner-login").addEventListener("click", async (event) => {
+document.getElementById("btnlogin").addEventListener("click", async (event) => {
     // Prevent the default form submission behavior
     if (!document.getElementById('verify-form').checkValidity()) {
         return;
@@ -16,7 +16,6 @@ document.getElementById("owner-login").addEventListener("click", async (event) =
     let response = await fetch("http://localhost:3000/owners/api/login", setting);
     if (response.ok) {
         if (response.redirected) {
-        // The 'url' property contains the redirected URL
             window.location.href = response.url;
         }
     } else {

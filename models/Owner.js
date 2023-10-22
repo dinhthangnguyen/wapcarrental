@@ -1,6 +1,8 @@
+const Car = require('./Car')
+
 let owners = [
     {
-        id: 616940,
+        id: 1,
         name: "Dinh Thang Nguyen",
         phone: "+1 941 233 9637",
         billingAddress: "1000 N 4th Street",
@@ -9,7 +11,7 @@ let owners = [
         creditCard: 94356744561
     },
     {
-        id: 616944,
+        id: 2,
         name: "Giao Hieu Tran",
         phone: "+1 941 233 2323",
         billingAddress: "1000 N 4th Street",
@@ -18,7 +20,7 @@ let owners = [
         creditCard: 94356754545
     },
     {
-        id: 616949,
+        id: 3,
         name: "A Long Chang",
         phone: "+1 941 233 8778",
         billingAddress: "1000 N 4th Street",
@@ -27,7 +29,7 @@ let owners = [
         creditCard: 43456744561
     },
     {
-        id: 616943,
+        id: 4,
         name: "Jason Smiths",
         phone: "+1 941 233 12312",
         billingAddress: "1000 N 4th Street",
@@ -36,7 +38,7 @@ let owners = [
         creditCard: 53563453455
     },
     {
-        id: 616920,
+        id: 5,
         name: "Kayla Woods",
         phone: "+1 941 233 12312",
         billingAddress: "1000 N 4th Street",
@@ -45,7 +47,7 @@ let owners = [
         creditCard: 5876734456
     },
     {
-        id: 616901,
+        id: 6,
         name: "Lanna Conner",
         phone: "+1 941 233 89078",
         billingAddress: "300 S Broadway Street",
@@ -54,7 +56,7 @@ let owners = [
         creditCard: 6565464562
     },
     {
-        id: 616923,
+        id: 7,
         name: "Ke Huy Quan",
         phone: "+1 941 233 12234",
         billingAddress: "1000 N 4th Street",
@@ -63,7 +65,7 @@ let owners = [
         creditCard: 14385874985
     },
     {
-        id: 616922,
+        id: 8,
         name: "Maggie Q",
         phone: "+1 941 233 34523",
         billingAddress: "15 Wapello Street",
@@ -81,6 +83,7 @@ class Owner {
         this.billingAddress = billingAddress;
         this.zip = zip;
         this.email = email;
+        this.creditCard = creditCard;
         this.cars = [];
         this.bills = [];
     }
@@ -105,8 +108,8 @@ class Owner {
         return owners.find(o => o.id === id);
     }
 
-    getAllCars() {
-
+    static getCarsById(id) {
+        return Car.getByOwnerId(id);
     }
 
     getCarById() {
@@ -125,6 +128,10 @@ class Owner {
         return id;
     }
 
+    create() {
+        owners.push(this);
+        return this;
+    }
     update() {
         this.id = parseInt(this.id);
         let index = owners.findIndex(o => o.id === this.id);
@@ -133,6 +140,20 @@ class Owner {
             return this;
         }
         return this;
+    }
+    
+    static getMaxId() {
+        return owners.map(o => o.id).sort((a, b) => a - b).pop();
+    }
+
+    static removeById(id) {
+        let index = owners.findIndex(o => o.id === id);
+        let deletedOwner;
+        if(index > -1){
+            deletedOwner = owners[index];
+            owners.splice(index, 1);
+        }
+        return deletedOwner;
     }
 }
 

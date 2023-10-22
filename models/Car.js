@@ -5,7 +5,7 @@ let cars = [
         model: "Prius",
         year: 2005,
         price: 50,
-        ownerId: 626940,
+        ownerId: 1,
         images: [
             "616940_1.jpg",
             "616940_2.jpg",
@@ -22,7 +22,7 @@ let cars = [
         model: "Camry",
         year: 2012,
         price: 60,
-        ownerId: 626944,
+        ownerId: 2,
         images: [
             "616944_1.jpg",
             "616944_2.jpg",
@@ -39,7 +39,7 @@ let cars = [
         model: "Accord",
         year: 2023,
         price: 120,
-        ownerId: 616920,
+        ownerId: 2,
         images: [
             "616920_1.jpg",
             "616920_2.jpg",
@@ -56,7 +56,7 @@ let cars = [
         model: "Corolla",
         year: 2018,
         price: 90,
-        ownerId: 616949,
+        ownerId: 3,
         images: [
             "616949_1.jpg",
             "616949_2.jpg",
@@ -73,7 +73,7 @@ let cars = [
         model: "RAV4",
         year: 2021,
         price: 110,
-        ownerId: 616943,
+        ownerId: 4,
         images: [
             "616943_1.jpg",
             "616943_2.jpg",
@@ -90,7 +90,7 @@ let cars = [
         model: "VF8 Electric",
         year: 2021,
         price: 110,
-        ownerId: 616923,
+        ownerId: 5,
         images: [
             "616923_1.jpg",
             "616923_2.jpg",
@@ -108,7 +108,7 @@ let cars = [
         model: "VF9 Electric",
         year: 2023,
         price: 90,
-        ownerId: 616923,
+        ownerId: 6,
         images: [
             "616923_6.jpg",
             "616923_7.jpg",
@@ -125,7 +125,7 @@ let cars = [
         model: "CRV",
         year: 2019,
         price: 70,
-        ownerId: 616940,
+        ownerId: 7,
         images: [
             "616940_6.jpg",
             "616940_7.jpg",
@@ -142,7 +142,7 @@ let cars = [
         model: "Model 3",
         year: 2019,
         price: 105,
-        ownerId: 616901,
+        ownerId: 8,
         images: [
             "616901_1.jpg",
             "616901_2.jpg",
@@ -159,7 +159,7 @@ let cars = [
         model: "Model Y",
         year: 2019,
         price: 105,
-        ownerId: 616901,
+        ownerId: 9,
         images: [
             "616901_6.jpg",
             "616901_7.jpg",
@@ -175,7 +175,7 @@ let cars = [
         model: "Civic",
         year: 2015,
         price: 75,
-        ownerId: 626944,
+        ownerId: 10,
         images: [
             "616944_5.jpg",
             "616944_6.jpg",
@@ -333,7 +333,9 @@ class Car {
     getProfitByMonth(month) {
 
     }
-
+    static getByOwnerId(ownerId){
+        return cars.filter(o => o.ownerId === ownerId);
+    }
 }
 
 module.exports = Car;
