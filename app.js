@@ -28,7 +28,7 @@ app.use("/", (req,res,next)=> {
 
 
 app.use((err,req,res,next)=> {
-    res.status(500).json({message: "Somewthing went wrong" + err.message});
+    res.status(500).json({message: "Somewthing went wrong: " + err.message});
 })
 app.listen(PORT,()=> {
     console.log(`server is running on port ${PORT}`);
