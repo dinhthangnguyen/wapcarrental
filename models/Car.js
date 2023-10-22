@@ -14,7 +14,8 @@ let cars = [
             "616940_5.jpg",
         ],
         city: "Fairfield",
-        available: true
+        available: true,
+        description: "Clean hybrid efficent vehicle. 50 mpg. you save a lot of money and the renting price is cheapest here in Fairfield"
     },
     {
         id: 2,
@@ -319,9 +320,9 @@ class Car {
     }
 
     static getCar(id) {
-        return cars.find(e => e === id);
+        return cars.find(e => String(e.id) === String(id));
     }
-    
+
     createCar(car) {
         cars.push(car);
     }
@@ -337,7 +338,7 @@ class Car {
     getProfitByMonth(month) {
 
     }
-    static getByOwnerId(ownerId){
+    static getByOwnerId(ownerId) {
         return cars.filter(o => o.ownerId === ownerId);
     }
     static getById(id){
