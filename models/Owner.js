@@ -1,4 +1,61 @@
-let owners = [];
+let owners = [
+    {
+        id: 616940,
+        name: "Dinh Thang Nguyen",
+        phone: "+1 941 233 9637",
+        address: "1000 N 4th Street",
+        zip: 52557,
+        email: "dnguyen@miu.edu"
+    },
+    {
+        id: 616944,
+        name: "Giao Hieu Tran",
+        phone: "+1 941 233 2323",
+        address: "1000 N 4th Street",
+        zip: 52557,
+        email: "gtran@miu.edu"
+    },
+    {
+        id: 616949,
+        name: "A Long Chang",
+        phone: "+1 941 233 8778",
+        address: "1000 N 4th Street",
+        zip: 52557,
+        email: "achang@miu.edu"
+    },
+    {
+        id: 616943,
+        name: "Dzung Phan",
+        phone: "+1 941 233 12312",
+        address: "1000 N 4th Street",
+        zip: 52557,
+        email: "achang@miu.edu"
+    },
+    {
+        id: 616923,
+        name: "Lanna Conner",
+        phone: "+1 941 233 89078",
+        address: "300 S Broadway Street",
+        zip: 52501,
+        email: "lannac@gmail.com"
+    },
+    {
+        id: 616913,
+        name: "Ke Huy Quan",
+        phone: "+1 941 233 12234",
+        address: "1000 N 4th Street",
+        zip: 52641,
+        email: "george.ke@gmail.com"
+    },
+    {
+        id: 616922,
+        name: "Maggie Q",
+        phone: "+1 941 233 34523",
+        address: "15 Wapello Street",
+        zip: 52501,
+        email: "maggie.q@gmail.com"
+    },
+];
 
 class Owner {
     constructor(id, name, phone, address, zip, email) {
@@ -13,15 +70,15 @@ class Owner {
     }
 
     addCar() {
-        
+
     }
-    
+
     removeCar() {
-        
+
     }
 
     addBill() {
-        
+
     }
 
     getAllOwner() {
@@ -40,8 +97,8 @@ class Owner {
 
     }
 
-    getBill = function(params) {
-        
+    getBill = function (params) {
+
     }
 }
 
