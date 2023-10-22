@@ -64,7 +64,8 @@ let cars = [
             "616949_4.jpg",
             "616949_5.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
     {
         id: 5,
@@ -202,19 +203,22 @@ class Car {
     }
 
     static getCities() {
-        let cities = [...new Set(cars.map(e => e.city))];
+        let cities = [...new Set(cars.filter(e => e.available).map(e => e.city))];
         cities.push(this.#all);
         cities.sort();
         return cities;
     }
 
     static getMakesByCity(city) {
-        let array = cars.filter(e => {
-            if (city.toLowerCase() == this.#all.toLowerCase()) {
-                return true;
-            }
-            return e.city.toLowerCase() === city.toLowerCase()
-        }).map(e => e.make);
+        let array = cars
+            .filter(car => car.available)
+
+            .filter(e => {
+                if (city.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return e.city.toLowerCase() === city.toLowerCase()
+            }).map(e => e.make);
         let makes = [...new Set(array)];
         makes.push(this.#all);
         makes.sort();
@@ -224,6 +228,7 @@ class Car {
 
     static getModels(city, make) {
         let array = cars
+            .filter(car => car.available)
             .filter(car => {
                 if (city.toLowerCase() == this.#all.toLowerCase()) {
                     return true;
@@ -237,15 +242,15 @@ class Car {
                 return car.make.toLowerCase() === make.toLowerCase()
             })
             .map(e => e.model);
-
         let models = [... new Set(array)];
         models.sort();
-        models.splice(0,0,this.#all);
+        models.splice(0, 0, this.#all);
         return models;
     }
 
     static getYears(city, make, model) {
         let array = cars
+            .filter(car => car.available)
             .filter(car => {
                 if (city.toLowerCase() == this.#all.toLowerCase()) {
                     return true;
@@ -268,12 +273,14 @@ class Car {
 
         let years = [... new Set(array)];
         years.sort();
-        years.splice(0,0,this.#all);
+        years.splice(0, 0, this.#all);
         return years;
     }
 
     static getCars(city, make, model, year) {
+        console.log(typeof year);
         let array = cars
+            .filter(car => car.available)
             .filter(car => {
                 if (city.toLowerCase() === this.#all.toLowerCase()) {
                     return true;
@@ -296,11 +303,10 @@ class Car {
                 if (String(year.toLowerCase()) === this.#all.toLowerCase()) {
                     return true;
                 }
-                return car.year.toLowerCase() === year.toLowerCase()
-            })
-            .filter(car => car.available);
+                return String(car.year) === year;
+            });
 
-        array.sort((a1,a2)=> {
+        array.sort((a1, a2) => {
             if (a1.price > a2.price) {
                 return 1;
             }

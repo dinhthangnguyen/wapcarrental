@@ -50,6 +50,7 @@ document.getElementById("makeSelect").addEventListener("change", () => {
     loadModels(city, make);
 });
 
+// load models
 async function loadModels(city, make) {
     let response = await fetch(`${serverUrl}/cars/models?city=${city}&make=${make}`);
     if (response.ok) {
@@ -75,16 +76,6 @@ document.getElementById("modelSelect").addEventListener("change", () => {
     loadYears(city, make, model);
 });
 
-
-document.getElementById("yearSelect").addEventListener("change", () => {
-    let make = document.getElementById("makeSelect").value;
-    let city = document.getElementById("citySelect").value;
-    let model = document.getElementById("modelSelect").value;
-    let year = document.getElementById("yearSelect").value;
-    loadYears(city, make, model, year);
-});
-
-
 async function loadYears(city, make, model) {
     let response = await fetch(`${serverUrl}/cars/years?city=${city}&make=${make}&model=${model}`);
     if (response.ok) {
@@ -102,6 +93,15 @@ async function loadYears(city, make, model) {
         alert("Error: something went wrong: " + response.status);
     }
 }
+
+// load cars
+document.getElementById("yearSelect").addEventListener("change", () => {
+    let make = document.getElementById("makeSelect").value;
+    let city = document.getElementById("citySelect").value;
+    let model = document.getElementById("modelSelect").value;
+    let year = document.getElementById("yearSelect").value;
+    loadCars(city, make, model, year);
+});
 
 async function loadCars(city, make, model, year) {
     let tbody = document.getElementById("tbody");
