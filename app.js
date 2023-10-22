@@ -8,6 +8,7 @@ const carRouter = require("./routers/carRouter");
 const ownerRouter = require("./routers/ownerRouter");
 const renterRouter = require("./routers/renterRouter");
 const aboutRouter = require("./routers/aboutRouter");
+const billingRouter = require("./routers/billingRouter");
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -17,7 +18,7 @@ app.use("/cars",carRouter);
 app.use("/owners",ownerRouter);
 app.use("/rent",renterRouter);
 app.use("/abouts",aboutRouter);
-
+app.use("/billings",billingRouter);
 
 // app.use("/rent", (req,res,next)=> {
 //     res.sendFile(path.join(__dirname,"/public/view/rent/rent.html"));
