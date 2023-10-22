@@ -9,7 +9,7 @@ let ownerController = {
             if(!ownerId) {
                 res.status(404).json({message: "Email not exists"});
             } else{
-                res.redirect(`/owners/view/detail/${ownerId}`)
+                res.redirect(`/owners/${ownerId}`)
             }
         } else {
             res.status(400).json({message: "Not blank email"});
