@@ -28,7 +28,7 @@ function loadUI(car) {
         img.setAttribute("alt", `${car.model} image`);
         img.className = "w-100 shadow-1-strong rounded mb-4";
 
-        if (i <= car.images.length / 2) {
+        if (i < car.images.length / 2) {
             leftGallery.appendChild(img);
         } else {
             rightGallery.appendChild(img);
