@@ -44,7 +44,7 @@ router.get("/:id/manage-car", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.get("/:id/manage-billing/:billingId", async (req,res,next)=> {
+router.get("/:id/billing/:billingId", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailbilling.html"));

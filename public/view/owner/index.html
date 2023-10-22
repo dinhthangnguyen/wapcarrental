@@ -1,11 +1,16 @@
 <form id ="verify-form">
-    <div class="form-group">
-        <label for="email" class="form-label mt-4">Email address</label>
-        <input type="email" class="form-control" id="email"
-            aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-            else.</small>
-    </div>
-    <button type="submit" id="btnlogin" class="btn btn-primary">Login</button>
-    <button type="button" id="btnregister" class="btn btn-info"><a href="/owners/register" value>Register</a></button>
+    <fieldset>
+        <legend>LOGIN</legend>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="email" class="form-label mt-4">Email address</label>
+                <input type="email" class="form-control" id="email"
+                    aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+        </div>
+        <button type="submit" id="btnlogin" class="btn btn-primary">Login</button>
+        <button type="button" id="btnregister" class="btn btn-info"><a href="/owners/register" value>Register</a></button>
+    </fieldset>
 </form>

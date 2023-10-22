@@ -25,4 +25,12 @@ async function loadData() {
     }
 }
 
+document.getElementById('btnBack').addEventListener("click", (event) => {
+
+    const pathname = window.location.pathname;
+    let paths = pathname.split("/");
+    let id = paths[2];
+    window.location.href = `http://localhost:3000/owners/${id}/manage-billing`;
+})
+
 window.onload = loadData;

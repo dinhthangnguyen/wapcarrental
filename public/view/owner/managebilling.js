@@ -6,18 +6,11 @@ async function loadData() {
     let response = await fetch(`http://localhost:3000/owners/api/${id}/billings`);
     if(response.ok){
         let billings = await response.json();
-        const tableRows = billings.map(billing => `
-        <tr id = ${billing.id}>
-            <td>${billing.car.make} ${billing.car.model} ${billing.car.year}</td>
-            <td>${billing.renter.name}</td>
-            <td>${billing.orderNumber}</td>
-            <td>${billing.total}</td>
-            <td>${billing.status}</td>
-            <td><a href ="/owners/billing/${billing.id}">View Detail</a></td>
-        </tr>
-        `).join('');
-
-        document.getElementById('table-body').innerHTML = tableRows;
+        let bool = false;
+        for (let billing of billings) {
+            addRowToTable(id, billing, bool);
+            bool = !bool;
+        }
     }
 }
 
@@ -28,5 +21,26 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     let id = paths[2];
     window.location.href = `http://localhost:3000/owners/${id}`;
 })
+
+function addRowToTable(id, billing, color) {
+    let row = document.createElement("tr");
+    row.setAttribute("id", billing.id);
+    row.addEventListener("click", () => {
+        openDetail(id, billing.id);
+    })
+    row.className = color ? "table-success" : "table-secondary";
+    let items = [`${billing.car.make} ${billing.car.model} ${billing.car.year}`,billing.renter.name,billing.orderNumber,billing.total, billing.status];
+    for (item of items) {
+        let col = document.createElement("td");
+        col.appendChild(document.createTextNode(item));
+        row.appendChild(col);
+    }
+    document.getElementById("tbody").appendChild(row);
+
+}
+
+function openDetail(id, billingId)  {
+    window.location.href = `/owners/${id}/billing/${billingId}`
+}
 
 window.onload = loadData;

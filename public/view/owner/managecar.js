@@ -6,18 +6,11 @@ async function loadData() {
     let response = await fetch(`http://localhost:3000/owners/api/${id}/cars`);
     if(response.ok){
         let cars = await response.json();
-        const tableRows = cars.map(car => `
-        <tr id = ${car.id}>
-            <td>${car.make}</td>
-            <td>${car.model}</td>
-            <td>${car.year}</td>
-            <td>${car.price}</td>
-            <td>${car.city}</td>
-            <td><a href ="/cars/${car.id}">View Detail</a></td>
-        </tr>
-        `).join('');
-
-        document.getElementById('table-body').innerHTML = tableRows;
+        let bool = false;
+        for (let car of cars) {
+            addRowToTable(car, bool);
+            bool = !bool;
+        }
     }
 }
 
@@ -28,5 +21,27 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     let id = paths[2];
     window.location.href = `http://localhost:3000/owners/${id}`;
 })
+
+function addRowToTable(car, color) {
+    let row = document.createElement("tr");
+    row.setAttribute("id", car.id);
+    row.addEventListener("click", () => {
+        openCarDetail(car.id);
+    })
+    row.className = color ? "table-success" : "table-secondary";
+    let{city,make,model,year, price}  = car;
+    let items = [city,make,model,year, price];
+    for (item of items) {
+        let col = document.createElement("td");
+        col.appendChild(document.createTextNode(item));
+        row.appendChild(col);
+    }
+    document.getElementById("tbody").appendChild(row);
+
+}
+
+function openCarDetail(id)  {
+    window.location.href = `/cars/${id}`
+}
 
 window.onload = loadData;
