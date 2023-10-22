@@ -25,11 +25,19 @@ let owners = [
     },
     {
         id: 616943,
-        name: "Dzung Phan",
+        name: "Jason Smiths",
         phone: "+1 941 233 12312",
         address: "1000 N 4th Street",
-        zip: 52557,
-        email: "achang@miu.edu"
+        zip: 52501,
+        email: "jasm@hotmail.com"
+    },
+    {
+        id: 616920,
+        name: "Kayla Woods",
+        phone: "+1 941 233 12312",
+        address: "1000 N 4th Street",
+        zip: 52501,
+        email: "kaylaw@gmail.com"
     },
     {
         id: 616901,

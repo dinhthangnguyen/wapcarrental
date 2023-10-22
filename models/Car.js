@@ -12,7 +12,8 @@ let cars = [
             "616940_3.jpg",
             "616940_4.jpg",
             "616940_5.jpg",
-        ]
+        ],
+        city: "Fairfield"
     },
     {
         id: 2,
@@ -25,8 +26,9 @@ let cars = [
             "616944_1.jpg",
             "616944_2.jpg",
             "616944_3.jpg",
-            "616944_4.jpg"
-        ]
+            "616944_4.jpg",
+        ],
+        city: "Fairfield"
     },
     {
         id: 3,
@@ -40,7 +42,8 @@ let cars = [
             "616920_2.jpg",
             "616920_3.jpg",
             "616920_4.jpg"
-        ]
+        ],
+        city: "Ottumwa"
     },
     {
         id: 4,
@@ -55,7 +58,8 @@ let cars = [
             "616949_3.jpg",
             "616949_4.jpg",
             "616949_5.jpg",
-        ]
+        ],
+        city: "Fairfield"
     },
     {
         id: 5,
@@ -69,7 +73,8 @@ let cars = [
             "616943_2.jpg",
             "616943_3.jpg",
             "616943_4.jpg"
-        ]
+        ],
+        city: "Ottumwa"
     },
     {
         id: 6,
@@ -84,7 +89,8 @@ let cars = [
             "616923_3.jpg",
             "616923_4.jpg",
             "616923_5.jpg",
-        ]
+        ],
+        city: "Mount Pleasant"
     },
     {
         id: 7,
@@ -98,7 +104,8 @@ let cars = [
             "616923_7.jpg",
             "616923_8.jpg",
             "616923_9.jpg"
-        ]
+        ],
+        city: "Mount Pleasant"
     },
     {
         id: 8,
@@ -113,7 +120,8 @@ let cars = [
             "616940_8.jpg",
             "616940_9.jpg",
             "616940_10.jpg",
-        ]
+        ],
+        city: "Fairfield"
     },
     {
         id: 9,
@@ -128,7 +136,8 @@ let cars = [
             "616901_3.jpg",
             "616901_4.jpg",
             "616901_5.jpg",
-        ]
+        ],
+        city: "Ottumwa"
     },
     {
         id: 10,
@@ -142,7 +151,8 @@ let cars = [
             "616901_7.jpg",
             "616901_8.jpg",
             "616901_9.jpg",
-        ]
+        ],
+        city: "Ottumwa"
     },
     {
         id: 11,
@@ -155,12 +165,13 @@ let cars = [
             "616944_5.jpg",
             "616944_6.jpg",
             "616944_7.jpg"
-        ]
+        ],
+        city: "Fairfield"
     },
 ];
 
 class Car {
-    constructor(id, make, model, year, price, ownerId) {
+    constructor(id, make, model, year, price, ownerId, city) {
         this.id = id;
         this.make = make;
         this.year = year;
@@ -168,13 +179,43 @@ class Car {
         this.availableDates = [];
         this.billings = [];
         this.images = []
+        this.ownerId = ownerId;
+        this.city = city;
     }
+
 
     static getAllCars() {
         return cars;
     }
 
-    updateDates (dates) {
+    static getMakesByCity(city) {
+        let array = cars.filter(e => e.city.toLowerCase() == city.toLowerCase()).map(e => e.make);
+        let makes = [...new Set(array)];
+        makes.sort();
+        return makes;
+    }
+
+    static getCities() {
+        let cities = [...new Set(cars.map(e => e.city))];
+        cities.sort();
+        return cities;
+    }
+
+    static getModels(city, make) {
+        console.log(city);
+
+        let array = cars
+        .filter(car => car.city.toLowerCase() === city.toLowerCase())
+        .filter(car => car.make.toLowerCase() === make.toLowerCase())
+        .map(e => e.model);
+
+        console.log(array);
+        let models = [... new Set(array)];
+        models.sort();
+        return models;
+    }
+
+    updateDates(dates) {
         this.availableDates = dates;
     }
 
