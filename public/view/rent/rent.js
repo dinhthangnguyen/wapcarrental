@@ -1,9 +1,9 @@
-const serverUrl = "http://localhost:3000";
+const serverUrl = "http://localhost:3000/cars/api";
 
 window.onload = async function () {
     console.log("window onload");
 
-    let response = await fetch(`${serverUrl}/cars/cities`);
+    let response = await fetch(`${serverUrl}/cities`);
     if (response.ok) {
         let cities = await response.json();
         loadCities(cities);
@@ -27,7 +27,7 @@ document.getElementById("citySelect").addEventListener("change", () => {
 });
 
 async function loadMakes(city) {
-    let response = await fetch(`${serverUrl}/cars/makes?city=${city}`);
+    let response = await fetch(`${serverUrl}/makes?city=${city}`);
     if (response.ok) {
         let makes = await response.json();
         let makeSelect = document.getElementById("makeSelect");
@@ -52,7 +52,7 @@ document.getElementById("makeSelect").addEventListener("change", () => {
 
 // load models
 async function loadModels(city, make) {
-    let response = await fetch(`${serverUrl}/cars/models?city=${city}&make=${make}`);
+    let response = await fetch(`${serverUrl}/models?city=${city}&make=${make}`);
     if (response.ok) {
         let models = await response.json();
         let modelSelect = document.getElementById("modelSelect");
@@ -77,7 +77,7 @@ document.getElementById("modelSelect").addEventListener("change", () => {
 });
 
 async function loadYears(city, make, model) {
-    let response = await fetch(`${serverUrl}/cars/years?city=${city}&make=${make}&model=${model}`);
+    let response = await fetch(`${serverUrl}/years?city=${city}&make=${make}&model=${model}`);
     if (response.ok) {
         let years = await response.json();
         let yearSelect = document.getElementById("yearSelect");
@@ -106,7 +106,7 @@ document.getElementById("yearSelect").addEventListener("change", () => {
 async function loadCars(city, make, model, year) {
     let tbody = document.getElementById("tbody");
     tbody.innerHTML = "";
-    let response = await fetch(`${serverUrl}/cars?city=${city}&make=${make}&model=${model}&year=${year}`)
+    let response = await fetch(`${serverUrl}?city=${city}&make=${make}&model=${model}&year=${year}`)
     if (response.ok) {
         let cars = await response.json();
         let bool = false;
