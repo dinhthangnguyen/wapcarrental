@@ -2,34 +2,44 @@ const Car = require('./Car')
 const Renter = require('./Renter')
 
 const Status = {
-    Unpaid: 1,
-    Paid: 2,
-    Closed: 3,
-    Canceled: 4
+    Unpaid: "Unpaid",
+    Paid: "Paid",
+    Closed: "Closed",
+    Canceled: "Canceled"
 }
 let billings = [
     {
         id: 1,
         carId: 2,
         renterId: 2,
-        orderNumber: "FH35DOOTO1"
+        orderNumber: "FH35DOOTO1",
+        status: Status.Unpaid
     },
     {
         id: 2,
-        carId: 2,
-        renterId: 2,
-        orderNumber: "FG5GTWB3434"
+        carId: 3,
+        renterId: 5,
+        orderNumber: "FG5GTWB3434",
+        status: Status.Paid
     },
     {
         id: 3,
         carId: 2,
+        renterId: 1,
+        orderNumber: "0NGJKJ3HV1",
+        status: Status.Canceled
+    },
+    {
+        id: 3,
+        carId: 3,
         renterId: 2,
-        orderNumber: "0NGJKJ3HV1"
+        orderNumber: "KKTIKJ3HV1",
+        status: Status.Closed
     },
     {
         id: 4,
-        carId: 2,
-        renterId: 2,
+        carId: 1,
+        renterId: 6,
         orderNumber: "54FGHPO485"
     },
 ]
@@ -54,6 +64,12 @@ class Billing {
         billing.car = Car.getById(billing.carId);
         billing.renter = Renter.getById(billing.renterId);
         billing.total = billing.car.price;
+    }
+    static getByOwnerId(ownerId){
+        let cars = Car.getByOwnerId(ownerId).map(o => o.id);
+        let ownerBillings = billings.filter(o => cars.indexOf(o.carId) > -1);
+        ownerBillings.forEach(o => this.getAddiontalInfo(o));
+        return ownerBillings;
     }
 }
 

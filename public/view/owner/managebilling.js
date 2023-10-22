@@ -3,17 +3,17 @@ async function loadData() {
     let paths = pathname.split("/");
     let id = paths[2];
 
-    let response = await fetch(`http://localhost:3000/owners/api/${id}/cars`);
+    let response = await fetch(`http://localhost:3000/owners/api/${id}/billings`);
     if(response.ok){
-        let cars = await response.json();
-        const tableRows = cars.map(car => `
-        <tr id = ${car.id}>
-            <td>${car.make}</td>
-            <td>${car.model}</td>
-            <td>${car.year}</td>
-            <td>${car.price}</td>
-            <td>${car.city}</td>
-            <td><a href ="/cars/${car.id}">View Detail</a></td>
+        let billings = await response.json();
+        const tableRows = billings.map(billing => `
+        <tr id = ${billing.id}>
+            <td>${billing.car.make} ${billing.car.model} ${billing.car.year}</td>
+            <td>${billing.renter.name}</td>
+            <td>${billing.orderNumber}</td>
+            <td>${billing.total}</td>
+            <td>${billing.status}</td>
+            <td><a href ="/owners/billing/${billing.id}">View Detail</a></td>
         </tr>
         `).join('');
 

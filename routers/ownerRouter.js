@@ -12,6 +12,8 @@ router.get('/api/:id', ownerController.getById);
 
 router.get('/api/:id/cars', ownerController.getCarsById);
 
+router.get('/api/:id/billings', ownerController.getBillingsById);
+
 router.put('/api/:id', ownerController.updateOwner);
 
 router.post('/api', ownerController.registerOwner);
@@ -35,6 +37,30 @@ router.get("/:id/manage-car", async (req,res,next)=> {
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managecar.html"));
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managecar.js"));
+
+    let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
+    res.send(htmlContent);
+});
+
+router.get("/:id/manage-billing/:billingId", async (req,res,next)=> {
+    let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
+    let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
+    let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailbilling.html"));
+    let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailbilling.js"));
+
+    let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
+    res.send(htmlContent);
+});
+
+router.get("/:id/manage-billing", async (req,res,next)=> {
+    let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
+    let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
+    let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managebilling.html"));
+    let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managebilling.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
     htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);

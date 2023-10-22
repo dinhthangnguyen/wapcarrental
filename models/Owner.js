@@ -1,4 +1,5 @@
 const Car = require('./Car')
+const Billing = require('./Billing')
 
 let owners = [
     {
@@ -87,23 +88,6 @@ class Owner {
         this.cars = [];
         this.bills = [];
     }
-
-    addCar() {
-
-    }
-
-    removeCar() {
-
-    }
-
-    addBill() {
-
-    }
-
-    getAllOwner() {
-
-    }
-
     static getById(id) {
         return owners.find(o => o.id === id);
     }
@@ -112,14 +96,9 @@ class Owner {
         return Car.getByOwnerId(id);
     }
 
-    getCarById() {
-
+    static getBilingsById(id) {
+        return Billing.getByOwnerId(id);
     }
-
-    getBill = function (params) {
-
-    }
-
     static getIdByEmail(email){
         let id;
         let owner = owners.find(o => o.email === email);
