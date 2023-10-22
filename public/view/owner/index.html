@@ -24,7 +24,7 @@
             headers: { "Content-Type": 'application/json' }
         }
         try {
-        let response = await fetch("http://localhost:3000/owners/login", setting);
+        let response = await fetch("http://localhost:3000/owners/api/login", setting);
         if (response.ok) {
             if (response.redirected) {
             // The 'url' property contains the redirected URL

@@ -6,13 +6,13 @@ const router = express.Router();
 
 const ownerController = require('../controllers/ownerController');
 
-router.post('/login', ownerController.login);
+router.post('/api/login', ownerController.login);
 
-router.get('/:id', ownerController.getById);
+router.get('/api/:id', ownerController.getById);
 
-router.put('/:id', ownerController.updateOwner);
+router.put('/api/:id', ownerController.updateOwner);
 
-router.use("/view/detail/:id", async (req,res,next)=> {
+router.use("/:id", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "manage.html"));
 
@@ -20,7 +20,7 @@ router.use("/view/detail/:id", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-router.use("/view/login", async (req,res,next)=> {
+router.use("/", async (req,res,next)=> {
     console.log(path.join(__dirname, "public", "view", "common", "index.html"));
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "index.html"));

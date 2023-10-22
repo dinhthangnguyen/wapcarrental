@@ -32,9 +32,9 @@
     async function loadData() {
         const pathname = window.location.pathname;
         let paths = pathname.split("/");
-        let id = paths[4];
+        let id = paths[2];
 
-        let response = await fetch(`http://localhost:3000/owners/${id}`);
+        let response = await fetch(`http://localhost:3000/owners/api/${id}`);
         if(response.ok){
             let owner = await response.json();
             document.getElementById('email').value = owner.email;
@@ -54,7 +54,7 @@
         body: JSON.stringify(obj),
         headers: { "Content-Type": 'application/json' }
     }
-    let response = await fetch(`http://localhost:3000/owners/${id}`, setting);
+    let response = await fetch(`http://localhost:3000/owners/api/${id}`, setting);
     if (response.ok) {
         alert("Update Successfull");
     } else alert("Error " + response.status);
@@ -69,7 +69,7 @@
 
         const pathname = window.location.pathname;
         let paths = pathname.split("/");
-        let id = paths[4];
+        let id = paths[2];
 
         let email = document.getElementById('email').value;
         let name = document.getElementById('name').value;
