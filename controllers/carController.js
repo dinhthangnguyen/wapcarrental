@@ -38,7 +38,7 @@ let carController = {
         }
     },
     getCar: function(req,res,next) {
-        let {id} = req.param;
+        let {id} = req.params;
         if (id) {
             res.status(200).json(Car.getCar(id));            
         } else {

@@ -123,6 +123,9 @@ async function loadCars(city, make, model, year) {
 function addRowToTable(car, color) {
     let row = document.createElement("tr");
     row.setAttribute("id", car.id);
+    row.addEventListener("click", () => {
+        openCarDetail(car.id);
+    })
     row.className = color ? "table-success" : "table-secondary";
     let{city,make,model,year, price}  = car;
     let items = [city,make,model,year, price];
@@ -133,4 +136,8 @@ function addRowToTable(car, color) {
     }
     document.getElementById("tbody").appendChild(row);
 
+}
+
+function openCarDetail(id)  {
+    window.location.href = `/cars/${id}`
 }
