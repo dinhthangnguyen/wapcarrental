@@ -336,6 +336,9 @@ class Car {
     static getByOwnerId(ownerId){
         return cars.filter(o => o.ownerId === ownerId);
     }
+    static getById(id){
+        return cars.find(o => o.id === id);
+    }
 }
 
 module.exports = Car;
