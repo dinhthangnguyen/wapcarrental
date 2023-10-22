@@ -2,8 +2,13 @@ const Car = require('../models/Car');
 
 
 let carController = {
-    getAllCars: function(req,res,next) {
-        res.status(200).json(Car.getAllCars());
+    getCars: function(req,res,next) {
+        let {city, make, model, year} = req.query;
+        if (city && make && model && year) {
+            res.status(200).json(Car.getCars(city, make, model, year));            
+        } else {
+            res.status(400).json({"message": "Bad request, please provide city & make & model & year"})
+        }
     },
     getMakesByCity: function(req,res,next) {
         let city = req.query.city;

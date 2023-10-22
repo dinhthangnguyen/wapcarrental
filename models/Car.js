@@ -13,7 +13,8 @@ let cars = [
             "616940_4.jpg",
             "616940_5.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
     {
         id: 2,
@@ -28,7 +29,9 @@ let cars = [
             "616944_3.jpg",
             "616944_4.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
+
     },
     {
         id: 3,
@@ -43,7 +46,9 @@ let cars = [
             "616920_3.jpg",
             "616920_4.jpg"
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
+
     },
     {
         id: 4,
@@ -59,7 +64,8 @@ let cars = [
             "616949_4.jpg",
             "616949_5.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
     {
         id: 5,
@@ -74,7 +80,9 @@ let cars = [
             "616943_3.jpg",
             "616943_4.jpg"
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
+
     },
     {
         id: 6,
@@ -90,7 +98,9 @@ let cars = [
             "616923_4.jpg",
             "616923_5.jpg",
         ],
-        city: "Mount Pleasant"
+        city: "Mount Pleasant",
+        available: true
+
     },
     {
         id: 7,
@@ -105,7 +115,9 @@ let cars = [
             "616923_8.jpg",
             "616923_9.jpg"
         ],
-        city: "Mount Pleasant"
+        city: "Mount Pleasant",
+        available: true
+
     },
     {
         id: 8,
@@ -121,7 +133,8 @@ let cars = [
             "616940_9.jpg",
             "616940_10.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
     {
         id: 9,
@@ -137,7 +150,8 @@ let cars = [
             "616901_4.jpg",
             "616901_5.jpg",
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
     },
     {
         id: 10,
@@ -152,7 +166,8 @@ let cars = [
             "616901_8.jpg",
             "616901_9.jpg",
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
     },
     {
         id: 11,
@@ -166,7 +181,8 @@ let cars = [
             "616944_6.jpg",
             "616944_7.jpg"
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
 ];
 
@@ -179,32 +195,30 @@ class Car {
         this.make = make;
         this.year = year;
         this.price = price; // per day
-        this.availableDates = [];
+        this.available = true;
         this.billings = [];
         this.images = []
         this.ownerId = ownerId;
         this.city = city;
     }
 
-
-    static getAllCars() {
-        return cars;
-    }
-
     static getCities() {
-        let cities = [...new Set(cars.map(e => e.city))];
+        let cities = [...new Set(cars.filter(e => e.available).map(e => e.city))];
         cities.push(this.#all);
         cities.sort();
         return cities;
     }
 
     static getMakesByCity(city) {
-        let array = cars.filter(e => {
-            if (city.toLowerCase() == this.#all.toLowerCase()) {
-                return true;
-            }
-            return e.city.toLowerCase() === city.toLowerCase()
-        }).map(e => e.make);
+        let array = cars
+            .filter(car => car.available)
+
+            .filter(e => {
+                if (city.toLowerCase() == this.#all.toLowerCase()) {
+                    return true;
+                }
+                return e.city.toLowerCase() === city.toLowerCase()
+            }).map(e => e.make);
         let makes = [...new Set(array)];
         makes.push(this.#all);
         makes.sort();
@@ -213,9 +227,8 @@ class Car {
 
 
     static getModels(city, make) {
-        console.log(city);
-
         let array = cars
+            .filter(car => car.available)
             .filter(car => {
                 if (city.toLowerCase() == this.#all.toLowerCase()) {
                     return true;
@@ -229,17 +242,15 @@ class Car {
                 return car.make.toLowerCase() === make.toLowerCase()
             })
             .map(e => e.model);
-
         let models = [... new Set(array)];
         models.sort();
-        models.splice(0,0,this.#all);
+        models.splice(0, 0, this.#all);
         return models;
     }
 
     static getYears(city, make, model) {
-        console.log(city);
-
         let array = cars
+            .filter(car => car.available)
             .filter(car => {
                 if (city.toLowerCase() == this.#all.toLowerCase()) {
                     return true;
@@ -262,20 +273,53 @@ class Car {
 
         let years = [... new Set(array)];
         years.sort();
-        years.splice(0,0,this.#all);
+        years.splice(0, 0, this.#all);
         return years;
     }
 
-    updateDates(dates) {
-        this.availableDates = dates;
+    static getCars(city, make, model, year) {
+        console.log(typeof year);
+        let array = cars
+            .filter(car => car.available)
+            .filter(car => {
+                if (city.toLowerCase() === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.city.toLowerCase() === city.toLowerCase()
+            })
+            .filter(car => {
+                if (make.toLowerCase() === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.make.toLowerCase() === make.toLowerCase()
+            })
+            .filter(car => {
+                if (model.toLowerCase() === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.model.toLowerCase() === model.toLowerCase()
+            })
+            .filter(car => {
+                if (String(year.toLowerCase()) === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return String(car.year) === year;
+            });
+
+        array.sort((a1, a2) => {
+            if (a1.price > a2.price) {
+                return 1;
+            }
+            else if (a1.price < a2.price) {
+                return -1;
+            }
+            return 0;
+        })
+        return array;
     }
 
     createCar(car) {
         cars.push(car);
-    }
-
-    getAvailableDays() {
-        return this.availableDates;
     }
 
     addBill(bill) {
