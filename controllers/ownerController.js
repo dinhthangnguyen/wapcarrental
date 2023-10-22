@@ -1,4 +1,4 @@
-const Owner = require('../model/owner')
+const Owner = require('../models/Owner')
 
 let ownerController = {
 
