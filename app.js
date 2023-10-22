@@ -23,7 +23,7 @@ app.use("/rent", (req,res,next)=> {
     res.sendFile(path.join(__dirname,"/public/view/rent/rent.html"));
 })
 
-app.all("/owners/view/detail/:id", async (req,res,next)=> {
+app.use("/owners/view/detail/:id", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, "public", "view", "common", "index.html"));
     let component = await fs.readFile(path.join(__dirname, "public", "view", "owner", "manage.html"));
 
@@ -31,7 +31,7 @@ app.all("/owners/view/detail/:id", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-app.all("/owners/view/login", async (req,res,next)=> {
+app.use("/owners/view/login", async (req,res,next)=> {
     console.log(path.join(__dirname, "public", "view", "common", "index.html"));
     let frameSet = await fs.readFile(path.join(__dirname, "public", "view", "common", "index.html"));
     let component = await fs.readFile(path.join(__dirname, "public", "view", "owner", "index.html"));
@@ -40,7 +40,7 @@ app.all("/owners/view/login", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
-app.all("/", (req,res,next)=> {
+app.use("/", (req,res,next)=> {
     res.sendFile(path.join(__dirname,"/public/view/home/index.html"));
 })
 
