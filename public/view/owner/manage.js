@@ -73,6 +73,14 @@ document.getElementById('btnManagecar').addEventListener("click", (event) => {
     window.location.href = `http://localhost:3000/owners/${id}/manage-car`;
 })
 
+document.getElementById('btnManageBilling').addEventListener("click", (event) => {
+
+    const pathname = window.location.pathname;
+    let paths = pathname.split("/");
+    let id = paths[2];
+    window.location.href = `http://localhost:3000/owners/${id}/manage-billing`;
+})
+
 document.getElementById('btnDeleteAccount').addEventListener("click", (event) => {
 
     const pathname = window.location.pathname;

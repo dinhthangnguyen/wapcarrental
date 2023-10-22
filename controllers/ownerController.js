@@ -33,6 +33,15 @@ let ownerController = {
             res.status(404).json({ message: "owner not found."});
         }
     },
+    getBillingsById: function(req, res, next){
+        let id = parseInt(req.params.id);
+        let billings = Owner.getBilingsById(id);
+        if(billings){
+            res.status(200).json(billings);
+        } else{
+            res.status(404).json({ message: "owner not found."});
+        }
+    },
     updateOwner: function(req, res, next){
         let { name, phone, billingAddress , zip, email, creditCard} = req.body;
         id = parseInt(req.params.id);

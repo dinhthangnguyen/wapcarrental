@@ -1,76 +1,94 @@
 let renters = [
     {
         id: 1,
-        name: "Victor Nguyen",
+        name: "Victor Senior",
         phone: "+1 941 233 9637",
         billingAddress: "1001 N Main Street",
         zip: 52557,
         email: "dnguyen@miu.edu",
         creditCard: 94356744561
-    },
-    {
+      },
+      {
         id: 2,
-        name: "Steven N",
-        phone: "+1 941 434 5545",
-        billingAddress: "1002 N 4th Street",
-        zip: 52557,
-        email: "gtran@miu.edu",
-        creditCard: 94356754545
-    },
-    {
+        name: "Alice Johnson",
+        phone: "+1 123 456 7890",
+        billingAddress: "1234 S Oak Street",
+        zip: 54321,
+        email: "alice@example.com",
+        creditCard: 9876543210
+      },
+      {
         id: 3,
-        name: "A Long",
-        phone: "+1 941 233 8778",
-        billingAddress: "1004N 4th Street",
-        zip: 52557,
-        email: "achang@miu.edu",
-        creditCard: 43456744561
-    },
-    {
+        name: "John Doe",
+        phone: "+1 555 555 5555",
+        billingAddress: "456 E Elm Street",
+        zip: 67890,
+        email: "john@example.com",
+        creditCard: 1122334455
+      },
+      {
         id: 4,
-        name: "Jason Smiths",
-        phone: "+1 941 233 12312",
-        billingAddress: "1000 N 4th Street",
-        zip: 52501,
-        email: "jasm@hotmail.com",
-        creditCard: 53563453455
-    },
-    {
+        name: "Mary Smith",
+        phone: "+1 987 654 3210",
+        billingAddress: "789 W Willow Street",
+        zip: 12345,
+        email: "mary@example.com",
+        creditCard: 9988776655
+      },
+      {
         id: 5,
-        name: "Kayla Woods",
-        phone: "+1 941 233 12312",
-        billingAddress: "1000 N 4th Street",
-        zip: 52501,
-        email: "kaylaw@gmail.com",
-        creditCard: 5876734456
-    },
-    {
+        name: "David Brown",
+        phone: "+1 333 333 3333",
+        billingAddress: "101 N Pine Street",
+        zip: 11111,
+        email: "david@example.com",
+        creditCard: 1122334455
+      },
+      {
         id: 6,
-        name: "Lanna Conner",
-        phone: "+1 941 233 89078",
-        billingAddress: "300 S Broadway Street",
-        zip: 52501,
-        email: "lannac@gmail.com",
-        creditCard: 6565464562
-    },
-    {
+        name: "Emma White",
+        phone: "+1 777 777 7777",
+        billingAddress: "202 S Cedar Street",
+        zip: 22222,
+        email: "emma@example.com",
+        creditCard: 9988776655
+      },
+      {
         id: 7,
-        name: "Ke Huy Quan",
-        phone: "+1 941 233 12234",
-        billingAddress: "1000 N 4th Street",
-        zip: 52641,
-        email: "george.ke@gmail.com",
-        creditCard: 14385874985
-    },
-    {
+        name: "Daniel Green",
+        phone: "+1 444 444 4444",
+        billingAddress: "303 E Birch Street",
+        zip: 33333,
+        email: "daniel@example.com",
+        creditCard: 1122334455
+      },
+      {
         id: 8,
-        name: "Maggie Q",
-        phone: "+1 941 233 34523",
-        billingAddress: "15 Wapello Street",
-        zip: 52501,
-        email: "maggie.q@gmail.com",
-        creditCard: 58678374905
-    },
+        name: "Sophia Black",
+        phone: "+1 666 666 6666",
+        billingAddress: "404 W Walnut Street",
+        zip: 44444,
+        email: "sophia@example.com",
+        creditCard: 9988776655
+      },
+      {
+        id: 9,
+        name: "Christopher Lee",
+        phone: "+1 222 222 2222",
+        billingAddress: "505 N Maple Street",
+        zip: 55555,
+        email: "christopher@example.com",
+        creditCard: 1122334455
+      },
+      {
+        id: 10,
+        name: "Olivia Davis",
+        phone: "+1 888 888 8888",
+        billingAddress: "606 S Oak Street",
+        zip: 66666,
+        email: "olivia@example.com",
+        creditCard: 9988776655
+      }
 ];
 
 class Renter {

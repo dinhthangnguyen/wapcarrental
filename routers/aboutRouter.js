@@ -5,7 +5,7 @@ const path = require('path')
 const router = express.Router();
 
 
-router.use("/", async (req,res,next)=> {
+router.get("/", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "about", "index.html"));
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "about", "index.js"));
