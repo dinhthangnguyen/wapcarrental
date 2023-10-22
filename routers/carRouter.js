@@ -6,7 +6,7 @@ const carController = require('../controllers/carController');
 carRouter.get('/',carController.getAllCars);
 carRouter.get('/cities',carController.getCities);
 carRouter.get('/makes',carController.getMakesByCity);
-carRouter.get('/models',carController.getModelsByMake);
+carRouter.get('/models',carController.getModels);
 
 
 module.exports = carRouter;

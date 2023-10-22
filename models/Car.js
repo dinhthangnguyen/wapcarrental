@@ -196,19 +196,26 @@ class Car {
     }
 
     static getCities() {
-        let cities = [...new Set(cars.map(e=>e.city))];
+        let cities = [...new Set(cars.map(e => e.city))];
         cities.sort();
         return cities;
     }
 
-    static getModelsByMake(make) {
-        let array = cars.filter(car => car.make === make).map(e=> e.model);
+    static getModels(city, make) {
+        console.log(city);
+
+        let array = cars
+        .filter(car => car.city.toLowerCase() === city.toLowerCase())
+        .filter(car => car.make.toLowerCase() === make.toLowerCase())
+        .map(e => e.model);
+
+        console.log(array);
         let models = [... new Set(array)];
         models.sort();
         return models;
     }
 
-    updateDates (dates) {
+    updateDates(dates) {
         this.availableDates = dates;
     }
 
@@ -216,7 +223,7 @@ class Car {
         cars.push(car);
     }
 
-     getAvailableDays() {
+    getAvailableDays() {
         return this.availableDates;
     }
 

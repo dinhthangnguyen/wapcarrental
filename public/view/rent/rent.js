@@ -39,8 +39,31 @@ async function loadMakes(city) {
             option.setAttribute("id", makes[i]);
             makeSelect.appendChild(option);
         }
+        loadModels(city,makeSelect.value);
     } else {
         alert("Error: something went wrong: " + response.status);
     }
-    
+}
+
+document.getElementById("makeSelect").addEventListener("change",()=> {
+    let make = document.getElementById("makeSelect").value;
+    let city = document.getElementById("citySelect").value;
+    loadModels(city, make);
+});
+
+async function loadModels(city, make) {
+    let response = await fetch(`${serverUrl}/cars/models?city=${city}&make=${make}`);
+    if (response.ok) {
+        let models = await response.json();
+        let modelSelect = document.getElementById("modelSelect");
+        modelSelect.innerHTML = "";
+        for(let i = 0;i< models.length;i++) {
+            let option = document.createElement("option");
+            option.appendChild(document.createTextNode(models[i]));
+            option.setAttribute("id", models[i]);
+            modelSelect.appendChild(option);
+        }
+    } else {
+        alert("Error: something went wrong: " + response.status);
+    }
 }

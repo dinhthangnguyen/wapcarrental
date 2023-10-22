@@ -16,12 +16,12 @@ let carController = {
     getCities: function(req,res,next) {
         res.status(200).json(Car.getCities());
     },
-    getModelsByMake: function(req,res,next) {
-        let make = req.query.make;
-        if (make) {
-            res.status(200).json(Car.getModelsByMake(make));            
+    getModels: function(req,res,next) {
+        let {city, make} = req.query;
+        if (city && make) {
+            res.status(200).json(Car.getModels(city, make));            
         } else {
-            res.status(400).json({"message": "Bad request, please provide make"})
+            res.status(400).json({"message": "Bad request, please provide city & make"})
         }
     },
 }
