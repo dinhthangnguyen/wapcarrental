@@ -13,7 +13,8 @@ let cars = [
             "616940_4.jpg",
             "616940_5.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
     {
         id: 2,
@@ -28,7 +29,9 @@ let cars = [
             "616944_3.jpg",
             "616944_4.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
+
     },
     {
         id: 3,
@@ -43,7 +46,9 @@ let cars = [
             "616920_3.jpg",
             "616920_4.jpg"
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
+
     },
     {
         id: 4,
@@ -74,7 +79,9 @@ let cars = [
             "616943_3.jpg",
             "616943_4.jpg"
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
+
     },
     {
         id: 6,
@@ -90,7 +97,9 @@ let cars = [
             "616923_4.jpg",
             "616923_5.jpg",
         ],
-        city: "Mount Pleasant"
+        city: "Mount Pleasant",
+        available: true
+
     },
     {
         id: 7,
@@ -105,7 +114,9 @@ let cars = [
             "616923_8.jpg",
             "616923_9.jpg"
         ],
-        city: "Mount Pleasant"
+        city: "Mount Pleasant",
+        available: true
+
     },
     {
         id: 8,
@@ -121,7 +132,8 @@ let cars = [
             "616940_9.jpg",
             "616940_10.jpg",
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
     {
         id: 9,
@@ -137,7 +149,8 @@ let cars = [
             "616901_4.jpg",
             "616901_5.jpg",
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
     },
     {
         id: 10,
@@ -152,7 +165,8 @@ let cars = [
             "616901_8.jpg",
             "616901_9.jpg",
         ],
-        city: "Ottumwa"
+        city: "Ottumwa",
+        available: true
     },
     {
         id: 11,
@@ -166,7 +180,8 @@ let cars = [
             "616944_6.jpg",
             "616944_7.jpg"
         ],
-        city: "Fairfield"
+        city: "Fairfield",
+        available: true
     },
 ];
 
@@ -179,16 +194,11 @@ class Car {
         this.make = make;
         this.year = year;
         this.price = price; // per day
-        this.availableDates = [];
+        this.available = true;
         this.billings = [];
         this.images = []
         this.ownerId = ownerId;
         this.city = city;
-    }
-
-
-    static getAllCars() {
-        return cars;
     }
 
     static getCities() {
@@ -213,8 +223,6 @@ class Car {
 
 
     static getModels(city, make) {
-        console.log(city);
-
         let array = cars
             .filter(car => {
                 if (city.toLowerCase() == this.#all.toLowerCase()) {
@@ -237,8 +245,6 @@ class Car {
     }
 
     static getYears(city, make, model) {
-        console.log(city);
-
         let array = cars
             .filter(car => {
                 if (city.toLowerCase() == this.#all.toLowerCase()) {
@@ -266,16 +272,48 @@ class Car {
         return years;
     }
 
-    updateDates(dates) {
-        this.availableDates = dates;
+    static getCars(city, make, model, year) {
+        let array = cars
+            .filter(car => {
+                if (city.toLowerCase() === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.city.toLowerCase() === city.toLowerCase()
+            })
+            .filter(car => {
+                if (make.toLowerCase() === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.make.toLowerCase() === make.toLowerCase()
+            })
+            .filter(car => {
+                if (model.toLowerCase() === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.model.toLowerCase() === model.toLowerCase()
+            })
+            .filter(car => {
+                if (String(year.toLowerCase()) === this.#all.toLowerCase()) {
+                    return true;
+                }
+                return car.year.toLowerCase() === year.toLowerCase()
+            })
+            .filter(car => car.available);
+
+        array.sort((a1,a2)=> {
+            if (a1.price > a2.price) {
+                return 1;
+            }
+            else if (a1.price < a2.price) {
+                return -1;
+            }
+            return 0;
+        })
+        return array;
     }
 
     createCar(car) {
         cars.push(car);
-    }
-
-    getAvailableDays() {
-        return this.availableDates;
     }
 
     addBill(bill) {
