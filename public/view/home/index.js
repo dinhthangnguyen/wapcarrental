@@ -14,7 +14,7 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text">${car.description}</p>
-                                                        <p class="card-text">Price per day: $${car.price}</p>
+                                                        <p class="card-text">Price per day(USD): ${car.price}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
@@ -35,7 +35,7 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text">${car.description}</p>
-                                                        <p class="card-text">Price per day: $${car.price}</p>
+                                                        <p class="card-text">Price per day(USD): ${car.price}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
@@ -56,7 +56,7 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text">${car.description}</p>
-                                                        <p class="card-text">Price per day: $${car.price}</p>
+                                                        <p class="card-text">Price per day(USD): ${car.price}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
