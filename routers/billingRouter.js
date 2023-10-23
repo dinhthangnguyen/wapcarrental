@@ -12,8 +12,6 @@ router.get('/api/track-order/:numberOrder', billingController.getByOrderNumber);
 
 router.post('/api/pay/:id', billingController.payBilling);
 
-router.post('/api/confirm-pay/:id', billingController.confirmPayBilling);
-
 router.post('/api/cancel/:id', billingController.cancelBilling);
 
 router.get("/track-order", async (req,res,next)=> {
