@@ -33,7 +33,7 @@ document.getElementById("btnSearch").addEventListener("click", async function (e
             )
         }
     } else {
-        alert("Error: something went wrong: " + response.status)
+        alert("Error: something went wrong: " + response.statusText)
     }
 });
 

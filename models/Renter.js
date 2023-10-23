@@ -1,5 +1,3 @@
-const { rent } = require("../controllers/renterController");
-
 let renters = [
     {
         id: 1,
