@@ -18,7 +18,7 @@ let renterController = {
             res.status(404).json({ "message": "car not found" });
             return;
         }
-        let renter = Renter.getRenterByEmail(email);
+        let renter = Renter.getRenterByEmailOrPhone(email);
         if (!renter) {
             renter = new Renter(
                 Renter.generateId(),
@@ -27,15 +27,17 @@ let renterController = {
                 address,
                 email,
                 card,
-                license
+                license,
             );
             renter.create();
         }
+
         let billing = new Billing(
             Billing.generateId(),
             car.id,
             renter.id,
-            idGenerator(10)
+            idGenerator(10),
+            car.price
         )
         billing.create();
         car.available = false;

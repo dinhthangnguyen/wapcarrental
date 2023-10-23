@@ -1,5 +1,5 @@
-const Car = require('./Car')
-const Renter = require('./Renter')
+const Car = require('./Car');
+const Renter = require('./Renter');
 
 let billings = [
     {
@@ -7,35 +7,55 @@ let billings = [
         carId: 2,
         renterId: 2,
         orderNumber: "FH35DOOTO1",
-        status: "Unpaid"
+        status: "Unpaid",
+        price: 40,
+        startDate: Date.now(),
+        endDate: Date.now(),
+        total: 80,
     },
     {
         id: 2,
         carId: 3,
         renterId: 5,
         orderNumber: "FG5GTWB3434",
-        status: "Paid"
+        status: "Paid",
+        price: 40,
+        startDate: Date.now(),
+        endDate: Date.now(),
+        total: 80,
     },
     {
         id: 3,
         carId: 2,
         renterId: 1,
         orderNumber: "0NGJKJ3HV1",
-        status: "Canceled"
+        status: "Canceled",
+        price: 40,
+        startDate: Date.now(),
+        endDate: Date.now(),
+        total: 80,
     },
     {
         id: 4,
         carId: 3,
         renterId: 2,
         orderNumber: "KKTIKJ3HV1",
-        status: "Paid"
+        status: "Paid",
+        price: 40,
+        startDate: Date.now(),
+        endDate: Date.now(),
+        total: 80,
     },
     {
         id: 5,
         carId: 1,
         renterId: 4,
         orderNumber: "54FGHPO485",
-        status: "Unpaid"
+        status: "Unpaid",
+        price: 40,
+        startDate: Date.now(),
+        endDate: Date.now(),
+        total: 80,
     }
 ]
 class Billing {
@@ -44,12 +64,16 @@ class Billing {
         Paid: "Paid",
         Canceled: "Canceled"
     }
-    constructor(id, carId, renterId, orderNumber, status) {
+    constructor(id, carId, renterId, orderNumber, price) {
         this.id = id;
         this.carId = carId;
         this.renterId = renterId;
         this.orderNumber = orderNumber;
-        this.status = status;
+        this.status = Billing.Status.Unpaid;
+        this.startDate = Date.now();
+        this.endDate = "";
+        this.price = price;
+        this.total = price;
     }
     
     static getById(id){
@@ -74,6 +98,13 @@ class Billing {
         billing.total = billing.car.price;
     }
 
+    static getBillingsByRenterId(id) {
+        return billings.filter(e => e.renterId === parseInt(id)).map(e=> {
+            this.getAddiontalInfo(e);
+            return e;
+        });
+    }
+
     static generateId() {
         let max = billings.map(o => o.id).reduce((a,b)=> {
             if (a > b) {
@@ -92,10 +123,12 @@ class Billing {
     }
     pay(){
         this.status = Billing.Status.Paid;
+        this.endDate = Date.now();
         return this;
     }
     cancelPay(){
         this.status = Billing.Status.Canceled;
+        this.endDate = Date.now();
         return this;
     }
     create(){
