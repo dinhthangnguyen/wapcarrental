@@ -56,7 +56,8 @@ class Billing {
     cancelPay(){
         this.status = Billing.Status.Canceled;
         return this;
-    create() {
+    }
+    create(){
         billings.push(this);
     }
 }
