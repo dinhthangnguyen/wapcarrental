@@ -28,6 +28,17 @@ class Billing {
         billing.renter = Renter.getById(billing.renterId);
         billing.total = billing.car.price;
     }
+
+    static generateId() {
+        let max = renters.map(o => o.id).reduce((a,b)=> {
+            if (a > b) {
+                return a;
+            }
+            return b;
+        });
+        return max +1;
+    }
+
     static getByOwnerId(ownerId){
         let cars = Car.getByOwnerId(ownerId).map(o => o.id);
         let ownerBillings = billings.filter(o => cars.indexOf(o.carId) > -1);
@@ -45,6 +56,8 @@ class Billing {
     cancelPay(){
         this.status = Billing.Status.Canceled;
         return this;
+    create() {
+        billings.push(this);
     }
 }
 
