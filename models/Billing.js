@@ -107,10 +107,17 @@ class Billing {
     }
 
     static getBillingsByRenterIdAndOrderNumber(renterId, order) {
-        console.log(renterId);
-        console.log(order);
         let item = billings.filter(e => e.renterId === parseInt(renterId))
             .find(e => e.orderNumber.toUpperCase() === order.toUpperCase())
+        if (item) {
+            this.getAddiontalInfo(item);
+        }
+        return item;
+    }
+
+    static getBillingsByRenterIdAndOrderId(renterId, orderId) {
+        let item = billings.filter(e => e.renterId === parseInt(renterId))
+            .find(e => e.id === parseInt(orderId))
         if (item) {
             this.getAddiontalInfo(item);
         }

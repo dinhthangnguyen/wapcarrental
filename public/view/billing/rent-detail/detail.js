@@ -2,29 +2,39 @@ const serverUrl = 'http://localhost:3000';
 async function loadData() {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
-    let id = paths[2];
+    let params = paths.map(e=> Number(e)).filter(e => !!e)
+    let id = params[0];
+    let orderNumber = params[1];
+    
+    let response = await fetch(`${serverUrl}/billings/api/${id}/${orderNumber}`);
 
-    let response = await fetch(`${serverUrl}/billings/api/${id}`);
     if(response.ok){
         let billing = await response.json();
+        console.log(billing);
         document.getElementById('make').value = billing.car.make;
         document.getElementById('model').value = billing.car.model;
         document.getElementById('year').value = billing.car.year;
-        document.getElementById('price').value = billing.car.price;
+        document.getElementById('price').value = `${"$"} ${billing.price}`;
         document.getElementById('city').value = billing.car.city;
 
         document.getElementById('orderNumber').value = billing.orderNumber;
         document.getElementById('total').value = billing.total;
 
-        if(billing.status != 'Unpaid')
+        if(billing.status === 'Cancelled' || billing.status === 'Paid') {
             document.getElementById('bntPayment').setAttribute('class','btn btn-primary d-none');
-        else
-            document.getElementById('bntPayment').setAttribute('class','btn btn-primary');
+            document.getElementById('btnCancel').setAttribute('class','btn btn-danger d-none');
+        }
 
-        if(billing.status != 'Unpaid' && billing.status != 'Paid')
-            document.getElementById('btnCancel').setAttribute('class','btn btn-warning d-none');
-        else
-            document.getElementById('btnCancel').setAttribute('class','btn btn-warning');
+
+        // if(billing.status != 'Unpaid' || billing.status)
+        //     document.getElementById('bntPayment').setAttribute('class','btn btn-primary d-none');
+        // else
+        //     document.getElementById('bntPayment').setAttribute('class','btn btn-primary');
+
+        // if(billing.status != 'Unpaid' && billing.status != 'Paid')
+        //     document.getElementById('btnCancel').setAttribute('class','btn btn-warning d-none');
+        // else
+        //     document.getElementById('btnCancel').setAttribute('class','btn btn-warning');
     }
 }
 
