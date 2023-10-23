@@ -1,26 +1,4 @@
 const serverUrl = 'http://localhost:3000';
-// async function loadData() {
-//     const pathname = window.location.pathname;
-//     let paths = pathname.split("/");
-//     let id = paths[4];
-
-//     let response = await fetch(`${serverUrl}/cars/api/${id}`);
-//     if(response.ok){
-//         let car = await response.json();
-        
-//         document.getElementById('make').value = car.make;
-//         document.getElementById('model').value = car.model;
-//         document.getElementById('year').value = car.year;
-//         document.getElementById('price').value = car.price;
-//         document.getElementById('city').value = car.city;
-        
-//         let bool = false;
-//         for (let img of car.images) {
-//             addRowToTable(id, img, bool);
-//             bool = !bool;
-//         }
-//     }
-// }
 
 document.getElementById('btnBack').addEventListener("click", (event) => {
 
