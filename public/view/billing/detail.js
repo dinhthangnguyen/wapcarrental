@@ -54,7 +54,7 @@ async function payOrder(id) {
         body: JSON.stringify(obj),
         headers: { "Content-Type": 'application/json' }
     }
-    let response = await fetch(`http://localhost:3000/billings/api/pay/${id}`, setting);
+    let response = await fetch(`/billings/api/pay/${id}`, setting);
     if (response.ok) {
         alert("Payment completed. Thank you!");
         location.reload();
@@ -80,7 +80,7 @@ async function cancelOrder(id) {
         body: JSON.stringify(obj),
         headers: { "Content-Type": 'application/json' }
     }
-    let response = await fetch(`http://localhost:3000/billings/api/cancel/${id}`, setting);
+    let response = await fetch(`${serverUrl}/billings/api/cancel/${id}`, setting);
     if (response.ok) {
         alert("Cancel completed. Thank you!");
         location.reload();

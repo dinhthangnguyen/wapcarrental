@@ -1,4 +1,4 @@
-const serverUrl = "http://localhost:3000/cars/api";
+const serverUrl = "${serverUrl}/cars/api";
 
 window.onload = async function () {
     let paths = window.location.pathname.split("/");

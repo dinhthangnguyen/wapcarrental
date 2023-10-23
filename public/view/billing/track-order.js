@@ -1,3 +1,4 @@
+const serverUrl = 'http://localhost:3000';
 document.getElementById("btnSearch").addEventListener("click", async (event) => {
     // Prevent the default form submission behavior
     if (!document.getElementById('verify-form').checkValidity()) {
@@ -7,9 +8,9 @@ document.getElementById("btnSearch").addEventListener("click", async (event) => 
 
     var orderNumber = document.getElementById("orderNumber").value;
 
-    let response = await fetch(`http://localhost:3000/billings/api/track-order/${orderNumber}`);
+    let response = await fetch(`${serverUrl}/billings/api/track-order/${orderNumber}`);
     if(response.ok){
         let billing = await response.json();
-        window.location.href = `http://localhost:3000/billings/${billing.id}`
+        window.location.href = `${serverUrl}/billings/${billing.id}`
     }
 })

@@ -1,3 +1,4 @@
+const serverUrl = 'http://localhost:3000';
 async function registerOwner(name, phone, billingAddress, zip, email, creditCard) {
 let obj = { name, phone, billingAddress, zip, email, creditCard };
 let setting = {
@@ -5,11 +6,11 @@ let setting = {
     body: JSON.stringify(obj),
     headers: { "Content-Type": 'application/json' }
 }
-let response = await fetch('http://localhost:3000/owners/api/', setting);
+let response = await fetch('${serverUrl}/owners/api/', setting);
 if (response.ok) {
     alert("Register Successfull");
     var newOwner = await response.json();
-    window.location.href = `http://localhost:3000/owners/${newOwner.id}/`
+    window.location.href = `${serverUrl}/owners/${newOwner.id}/`
 } else alert("Error " + response.status);
 }
 

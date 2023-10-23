@@ -1,3 +1,4 @@
+const serverUrl = 'http://localhost:3000';
 document.getElementById("btnlogin").addEventListener("click", async (event) => {
     // Prevent the default form submission behavior
     if (!document.getElementById('verify-form').checkValidity()) {
@@ -13,7 +14,7 @@ document.getElementById("btnlogin").addEventListener("click", async (event) => {
         headers: { "Content-Type": 'application/json' }
     }
     try {
-    let response = await fetch("http://localhost:3000/owners/api/login", setting);
+    let response = await fetch("${serverUrl}/owners/api/login", setting);
     if (response.ok) {
         if (response.redirected) {
             window.location.href = response.url;

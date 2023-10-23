@@ -1,9 +1,10 @@
+const serverUrl = 'http://localhost:3000';
 async function loadData() {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
     let id = paths[2];
 
-    let response = await fetch(`http://localhost:3000/owners/api/${id}/cars`);
+    let response = await fetch(`${serverUrl}/owners/api/${id}/cars`);
     if(response.ok){
         let cars = await response.json();
         let bool = false;
@@ -19,7 +20,7 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
     let id = paths[2];
-    window.location.href = `http://localhost:3000/owners/${id}`;
+    window.location.href = `${serverUrl}/owners/${id}`;
 })
 
 function addRowToTable(car, color) {
