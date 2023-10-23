@@ -24,7 +24,7 @@ router.get("/track-order", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "billing", "track-order.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -38,7 +38,7 @@ router.get("/track-email", async (req, res, next) => {
     // let style2 = await fs.readFile(path.join(__dirname, "../public/view/billing/track-email/style.css"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">', `<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">', `<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">', `<style id="custom-inline">${style.toString()}`);
     // htmlContent = htmlContent.replace('<style id = "custom-inline2">', `<style id = "custom-inline2">${style2.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">', `<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
