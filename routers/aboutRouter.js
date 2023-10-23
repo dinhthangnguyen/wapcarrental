@@ -12,7 +12,6 @@ router.get("/", async (req,res,next)=> {
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
-    console.log(htmlContent);
     res.send(htmlContent);
 });
 

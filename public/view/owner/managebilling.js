@@ -1,9 +1,10 @@
+const serverUrl = 'http://localhost:3000';
 async function loadData() {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
     let id = paths[2];
 
-    let response = await fetch(`http://localhost:3000/owners/api/${id}/billings`);
+    let response = await fetch(`${serverUrl}/owners/api/${id}/billings`);
     if(response.ok){
         let billings = await response.json();
         let bool = false;
@@ -19,7 +20,7 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
     let id = paths[2];
-    window.location.href = `http://localhost:3000/owners/${id}`;
+    window.location.href = `${serverUrl}/owners/${id}`;
 })
 
 function addRowToTable(id, billing, color) {
@@ -40,7 +41,7 @@ function addRowToTable(id, billing, color) {
 }
 
 function openDetail(id, billingId)  {
-    window.location.href = `/owners/${id}/billing/${billingId}`
+    window.location.href = `/owners/${id}/billings/${billingId}`
 }
 
 window.onload = loadData;
