@@ -9,8 +9,10 @@ router.get("/", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "about", "index.html"));
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "about", "index.js"));
+    let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
