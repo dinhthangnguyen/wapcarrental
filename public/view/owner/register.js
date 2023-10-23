@@ -6,7 +6,7 @@ let setting = {
     body: JSON.stringify(obj),
     headers: { "Content-Type": 'application/json' }
 }
-let response = await fetch('${serverUrl}/owners/api/', setting);
+let response = await fetch(`${serverUrl}/owners/api/`, setting);
 if (response.ok) {
     alert("Register Successfull");
     var newOwner = await response.json();

@@ -32,6 +32,18 @@ router.get("/register", async (req,res,next)=> {
     res.send(htmlContent);
 });
 
+router.get("/:id/cars/:carId", async (req,res,next)=> {
+    let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
+    let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
+    let component = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailcar.html"));
+    let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailcar.js"));
+
+    let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
+    res.send(htmlContent);
+});
+
 router.get("/:id/cars", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));
     let style = await fs.readFile(path.join(__dirname, ".." , "public", "view", "common", "style.css"));
