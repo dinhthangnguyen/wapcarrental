@@ -2,7 +2,7 @@ const serverUrl = 'http://localhost:3000';
 async function loadData() {
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
-    let id = paths[3];
+    let id = paths[2];
 
     let response = await fetch(`${serverUrl}/billings/api/${id}`);
     if(response.ok){
@@ -39,7 +39,7 @@ document.getElementById('bntPayment').addEventListener("click", (event) => {
 
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
-    let id = paths[3];
+    let id = paths[2];
     const isConfirmed = window.confirm("Are you sure you want to pay for this order?");
     if (isConfirmed) {
         payOrder(id);
@@ -65,7 +65,7 @@ document.getElementById('btnCancel').addEventListener("click", (event) => {
 
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
-    let id = paths[3];
+    let id = paths[2];
     const isConfirmed = window.confirm("Are you sure you want to cancel this order?");
     if (isConfirmed) {
         cancelOrder(id);
