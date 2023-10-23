@@ -14,7 +14,7 @@ let billings = [
     {
         id: 2,
         carId: 3,
-        renterId: 5,
+        renterId: 4,
         orderNumber: "FG5GTWB3434",
         status: "Paid",
         price: 40,
@@ -134,15 +134,6 @@ class Billing {
         });
         return max + 1;
     }
-
-    static getByOwnerId(ownerId) {
-                // TODO: this line have to be removed
-        let cars = Car.getByOwnerId(ownerId).map(o => o.id);
-        let ownerBillings = billings.filter(o => cars.indexOf(o.carId) > -1);
-        // TODO: this line have to be removed
-        ownerBillings.forEach(o => this.getAddiontalInfo(o));
-        return ownerBillings;
-    }
     static pay(renterId, billId) {
         let index = billings.findIndex(e=> {
             return e.renterId === parseInt(renterId) && e.id === parseInt(billId);
@@ -174,6 +165,14 @@ class Billing {
 
     create() {
         billings.push(this);
+    }
+
+    static getBillingsBycarIds(carIds){
+        return billings.filter(o => carIds.indexOf(o.carId) > -1);
+    }
+
+    static countByCarId(carId){
+        return billings.filter(o => o.carId === carId).length;
     }
 }
 

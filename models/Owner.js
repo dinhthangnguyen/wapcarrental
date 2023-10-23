@@ -1,8 +1,3 @@
-    //TODO:  remove this
-
-const Car = require('./Car')
-const Billing = require('./Billing')
-
 let owners = [
     {
         id: 1,
@@ -94,15 +89,6 @@ class Owner {
         return owners.find(o => o.id === id);
     }
 
-    //TODO:  remove this
-    static getCarsById(id) {
-        return Car.getByOwnerId(id);
-    }
-
-        //TODO:  remove this
-    static getBilingsById(id) {
-        return Billing.getByOwnerId(id);
-    }
     static getIdByEmail(email){
         let id;
         let owner = owners.find(o => o.email === email);

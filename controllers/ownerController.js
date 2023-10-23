@@ -1,4 +1,18 @@
-const Owner = require('../models/Owner')
+const Owner = require('../models/Owner');
+const Renter = require('../models/Renter');
+const Car = require('../models/Car');
+const Billing = require('../models/Billing');
+function getBillingByOwnerId(ownerId) {
+
+    let carIds = Car.getByOwnerId(ownerId).map(o => o.id);
+    let ownerBillings = Billing.getBillingsBycarIds(carIds);
+    ownerBillings.forEach(o => getAddiontalInfo(o));
+    return ownerBillings;
+}
+function getAddiontalInfo(billing) {
+    billing.car = Car.getById(billing.carId);
+    billing.renter = Renter.getById(billing.renterId);
+}
 
 let ownerController = {
 
@@ -26,7 +40,7 @@ let ownerController = {
     },
     getCarsById: function(req, res, next){
         let id = parseInt(req.params.id);
-        let cars = Owner.getCarsById(id);
+        let cars = Car.getByOwnerId(id);
         if(cars){
             res.status(200).json(cars);
         } else{
@@ -35,7 +49,7 @@ let ownerController = {
     },
     getBillingsById: function(req, res, next){
         let id = parseInt(req.params.id);
-        let billings = Owner.getBilingsById(id);
+        let billings = getBillingByOwnerId(id);
         if(billings){
             res.status(200).json(billings);
         } else{

@@ -1,5 +1,24 @@
 const Car = require('../models/Car');
+const Billing = require('../models/Billing');
 
+function getHotPickDatas(limit) {
+    let array = Car.getAvailable();
+
+    for(let car of array){
+        car.BillingCount = Billing.countByCarId(car.id);
+    }
+
+    array = array.sort((a1, a2) => {
+        if (a1.BillingCount < a2.BillingCount) {
+            return 1;
+        }
+        else if (a1.BillingCount > a2.BillingCount) {
+            return -1;
+        }
+        return 0;
+    }).slice(0, limit);
+    return array;
+}
 
 let carController = {
     getCities: function(req,res,next) {
@@ -116,7 +135,7 @@ let carController = {
     getHotPicks: function(req,res,next) {
         let limit = req.params.limit;
         if (limit) {
-            res.status(200).json(Car.getHotPicks(limit));            
+            res.status(200).json(getHotPickDatas(limit));            
         } else {
             res.status(400).json({"message": "Bad request"})
         }
