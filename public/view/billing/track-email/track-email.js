@@ -20,7 +20,6 @@ document.getElementById("btnSearch").addEventListener("click", async function (e
 
         let { renter, billings } = await response.json();
         for (const bill of billings) {
-            console.log(bill);
             let endDate = bill.endDate ? new Date(bill.endDate).toLocaleDateString('en-US') : "N/A"
             addRowToTable(
                 bill.orderNumber,

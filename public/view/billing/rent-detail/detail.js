@@ -10,7 +10,6 @@ async function loadData() {
 
     if(response.ok){
         let billing = await response.json();
-        console.log(billing);
         document.getElementById('make').value = billing.car.make;
         document.getElementById('model').value = billing.car.model;
         document.getElementById('year').value = billing.car.year;

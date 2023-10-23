@@ -88,7 +88,6 @@ class Billing {
     }
 
     static getById(id) {
-        console.log(billings);
         let billing = billings.find(o => o.id === id);
         if (typeof billing != 'Billing') {
             let index = billings.findIndex(o => o.id === id);
@@ -96,7 +95,6 @@ class Billing {
             billing = new Billing(id, carId, renterId, orderNumber, status);
             billings.splice(index, 1, billing);
         }
-        console.log(billings);
         this.getAddiontalInfo(billing);
         return billing;
     }
@@ -167,7 +165,7 @@ class Billing {
         billings[index].status = Billing.Status.Paid;
         billings[index].endDate = Date.now();
         let days = (this.endDate - this.startDate)/(24*3600*1000);
-        billings[index].total = this.price * (days > 0 ? 1: days);
+        billings[index].total = this.price * (days <= 0 ? 1: days);
         return billings[index];
     }
 
@@ -182,7 +180,7 @@ class Billing {
         billings[index].status = Billing.Status.Canceled;
         billings[index].endDate = Date.now();
         let days = (this.endDate - this.startDate)/(24*3600*1000);
-        billings[index].total = this.price * (days > 0 ? 1: days);
+        billings[index].total = this.price * (days <= 0 ? 1: days);
         return billings[index];
     }
 

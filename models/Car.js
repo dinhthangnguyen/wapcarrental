@@ -1,4 +1,3 @@
-const Billing = require("./Billing")
 let cars = [
     {
         id: 1,
@@ -416,9 +415,10 @@ class Car {
         let array = cars
             .filter(car => car.available);
 
-        for(let car of array){
-            car.BillingCount = Billing.countByCarId(car.id);
-        }
+            // TODO: circular importing
+        // for(let car of array){
+        //     car.BillingCount = Billing.countByCarId(car.id);
+        // }
 
         array = array.sort((a1, a2) => {
             if (a1.BillingCount < a2.BillingCount) {

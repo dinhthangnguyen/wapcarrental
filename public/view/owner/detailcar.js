@@ -169,7 +169,6 @@ document.getElementById('btnImageUpload').addEventListener("click", async (event
             console.error('Fetch error:', error);
         }
     } else {
-        console.log('No file selected.');
     }
 })
 
