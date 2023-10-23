@@ -8,7 +8,7 @@ const billingController = require('../controllers/billingController');
 
 router.get('/api/:id', billingController.getById);
 
-router.get('/api/track-order/:numberOrder', billingController.getByOrderNumber);
+router.get('/api/track-order/:email/:order', billingController.getBillByOrderAndEmail);
 
 router.get('/api/track-email/:email', billingController.getBillingsByEmail);
 

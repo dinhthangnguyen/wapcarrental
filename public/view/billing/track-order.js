@@ -1,16 +1,23 @@
 const serverUrl = 'http://localhost:3000';
 document.getElementById("btnSearch").addEventListener("click", async (event) => {
-    // Prevent the default form submission behavior
-    if (!document.getElementById('verify-form').checkValidity()) {
-        return;
-    }
     event.preventDefault();
 
-    var orderNumber = document.getElementById("orderNumber").value;
+    // Prevent the default form submission behavior
+    let form = document.getElementById('verify-form');
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
 
-    let response = await fetch(`${serverUrl}/billings/api/track-order/${orderNumber}`);
+    var orderNumber = document.getElementById("orderNumber").value;
+    var email = document.getElementById("emailInput").value;
+
+    let response = await fetch(`${serverUrl}/billings/api/track-order/${email}/${orderNumber}`);
     if(response.ok){
         let billing = await response.json();
-        window.location.href = `${serverUrl}/billings/${billing.id}`
+        window.location.href = `${serverUrl}/rent/${billing.renterId}/billing/${billing.id}`
+
+    } else {
+        alert("Error: something went wrong: " + response.statusText)
     }
 })

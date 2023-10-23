@@ -75,38 +75,49 @@ class Billing {
         this.price = price;
         this.total = price;
     }
-    
-    static getById(id){
+
+    static getById(id) {
         console.log(billings);
         let billing = billings.find(o => o.id === id);
-        if(typeof billing != 'Billing'){
+        if (typeof billing != 'Billing') {
             let index = billings.findIndex(o => o.id === id);
-            var {id , carId, renterId, orderNumber, status} = billing;
+            var { id, carId, renterId, orderNumber, status } = billing;
             billing = new Billing(id, carId, renterId, orderNumber, status);
-            billings.splice(index,1,billing);
+            billings.splice(index, 1, billing);
         }
         console.log(billings);
         this.getAddiontalInfo(billing);
         return billing;
     }
-    static getByOrderNumber(orderNumber){
+    static getByOrderNumber(orderNumber) {
         return billings.find(o => o.orderNumber === orderNumber);
     }
-    static getAddiontalInfo(billing){
+    static getAddiontalInfo(billing) {
         billing.car = Car.getById(billing.carId);
         billing.renter = Renter.getById(billing.renterId);
         billing.total = billing.car.price;
     }
 
     static getBillingsByRenterId(id) {
-        return billings.filter(e => e.renterId === parseInt(id)).map(e=> {
+        return billings.filter(e => e.renterId === parseInt(id)).map(e => {
             this.getAddiontalInfo(e);
             return e;
         });
     }
 
+    static getBillingsByRenterIdAndOrderNumber(renterId, order) {
+        console.log(renterId);
+        console.log(order);
+        let item = billings.filter(e => e.renterId === parseInt(renterId))
+            .find(e => e.orderNumber.toUpperCase() === order.toUpperCase())
+        if (item) {
+            this.getAddiontalInfo(item);
+        }
+        return item;
+    }
+
     static generateId() {
-        let max = billings.map(o => o.id).reduce((a,b)=> {
+        let max = billings.map(o => o.id).reduce((a, b) => {
             if (a > b) {
                 return a;
             }
@@ -115,23 +126,23 @@ class Billing {
         return max + 1;
     }
 
-    static getByOwnerId(ownerId){
+    static getByOwnerId(ownerId) {
         let cars = Car.getByOwnerId(ownerId).map(o => o.id);
         let ownerBillings = billings.filter(o => cars.indexOf(o.carId) > -1);
         ownerBillings.forEach(o => this.getAddiontalInfo(o));
         return ownerBillings;
     }
-    pay(){
+    pay() {
         this.status = Billing.Status.Paid;
         this.endDate = Date.now();
         return this;
     }
-    cancelPay(){
+    cancelPay() {
         this.status = Billing.Status.Canceled;
         this.endDate = Date.now();
         return this;
     }
-    create(){
+    create() {
         billings.push(this);
     }
 }

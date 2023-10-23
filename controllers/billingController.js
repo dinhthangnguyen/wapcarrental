@@ -13,18 +13,6 @@ let billingController = {
             }
         }    
     },
-    getByOrderNumber: function(req, res, next){
-        let numberOrder = req.params.numberOrder;
-        if(numberOrder){
-            let billing = Billing.getByOrderNumber(numberOrder);
-            if(billing){
-                res.status(200).json(billing);
-            } else{
-                res.status(404).json({ message: "Billing not found."});
-            }
-        } 
-    },
-
     getBillingsByEmail: function(req, res, next){
         let email = req.params.email;
         if(!email){
@@ -81,6 +69,26 @@ let billingController = {
             }
         }   
     },
+
+    getBillByOrderAndEmail: function(req, res, next){
+        let {order, email} = req.params;
+        if(!email || !order){
+            res.status(400).json({"message": "Bad request, please provide email & order"})
+            return;
+        }
+        let renter = Renter.getRenterByEmailOrPhone(email);
+        delete renter.creditCard;
+        if (!renter) {
+            res.status(404).json({"message": "Renter Not found"})
+            return;
+        }
+        let bill = Billing.getBillingsByRenterIdAndOrderNumber(renter.id, order);
+        if(bill){
+            res.status(200).json({bill});
+        } else{
+            res.status(404).json({ message: "Bill not found."});
+        }
+    }
 }
 
 
