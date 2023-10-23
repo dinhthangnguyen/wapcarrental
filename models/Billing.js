@@ -1,5 +1,5 @@
-const Car = require('./Car')
-const Renter = require('./Renter')
+const Car = require('./Car');
+const Renter = require('./Renter');
 
 let billings = [
     {
@@ -69,7 +69,7 @@ class Billing {
         this.carId = carId;
         this.renterId = renterId;
         this.orderNumber = orderNumber;
-        this.status = Billing.status.Unpaid;
+        this.status = Billing.Status.Unpaid;
         this.startDate = Date.now();
         this.endDate = "";
         this.price = price;
@@ -91,7 +91,10 @@ class Billing {
     }
 
     static getBillingsByRenterId(id) {
-        return billings.filter(e => e.renterId === parseInt(id));
+        return billings.filter(e => e.renterId === parseInt(id)).map(e=> {
+            this.getAddiontalInfo(e);
+            return e;
+        });
     }
 
     static generateId() {

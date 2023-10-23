@@ -31,6 +31,7 @@ let renterController = {
             );
             renter.create();
         }
+
         let billing = new Billing(
             Billing.generateId(),
             car.id,
@@ -38,7 +39,6 @@ let renterController = {
             idGenerator(10),
             car.price
         )
-        
         billing.create();
         car.available = false;
         res.status(200).json(billing);

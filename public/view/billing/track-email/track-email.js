@@ -1,6 +1,6 @@
 const serverUrl = "http://localhost:3000";
 
-document.getElementById("btnSearch").addEventListener("click", async function(event) {
+document.getElementById("btnSearch").addEventListener("click", async function (event) {
     event.preventDefault();
     // Prevent the default form submission behavior
     let form = document.getElementById('form');
@@ -12,18 +12,19 @@ document.getElementById("btnSearch").addEventListener("click", async function(ev
 
     var email = document.getElementById("emailInput").value;
     let response = await fetch(`${serverUrl}/billings/api/track-email/${email}`);
-    if(response.ok){
+    if (response.ok) {
+        document.getElementById("tbody").innerHTML = "";
         let billings = await response.json();
         for (const bill of billings) {
-            console.log(bill);
+            let endDate = bill.endDate ? new Date(bill.endDate).toLocaleDateString('en-US'): "N/A"
             addRowToTable(
                 bill.orderNumber,
-                bill.car.model,
-                bill.startDate,
-                bill.endDate,
-                bill.total,
+                `${bill.car.make} ${bill.car.model} ${bill.car.year}`,
+                new Date(bill.startDate).toLocaleDateString('en-US'),
+                endDate,
+                `${"$"}${bill.total}`,
                 bill.status
-                )
+            )
         }
     } else {
         alert("Error: something went wrong: " + response.status)
@@ -36,6 +37,13 @@ function addRowToTable(order, carname, start, stop, total, status) {
         let td = document.createElement("td");
         td.appendChild(document.createTextNode(item));
         row.appendChild(td);
+    }
+    if (status === "Canceled") {
+        row.className = "table-danger";
+    } else if (status === "Paid") {
+        row.className = "table-success";
+    } else {
+        row.className = "table-secondary";
     }
     document.getElementById("tbody").appendChild(row);
 }
