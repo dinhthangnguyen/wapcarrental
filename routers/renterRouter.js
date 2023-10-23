@@ -7,8 +7,8 @@ const renterController = require('../controllers/renterController');
 const billingController = require('../controllers/billingController');
 
 renterRouter.post("/api",renterController.rent);
-renterRouter.post('/api/pay', billingController.payBilling);
-renterRouter.post('/api/cancel', billingController.cancelBilling);
+// renterRouter.post('/api/pay', billingController.payBilling);
+// renterRouter.post('/api/cancel', billingController.cancelBilling);
 
 
 renterRouter.get("/", async (req, res, next) => {

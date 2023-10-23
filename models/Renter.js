@@ -1,3 +1,5 @@
+const { rent } = require("../controllers/renterController");
+
 let renters = [
     {
         id: 1,
@@ -49,7 +51,9 @@ class Renter {
     }
 
     static getById(id) {
-        return renters.find(o => o.id === id);
+        let renter = renters.find(o => o.id === id);
+        delete renter.creditCard;
+        return renter;
     }
 
     static getRenterByEmailOrPhone(email) {
