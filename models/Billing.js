@@ -16,7 +16,7 @@ let billings = [
     {
         id: 2,
         carId: 3,
-        renterId: 5,
+        renterId: 4,
         orderNumber: "FG5GTWB3434",
         status: "Paid",
         price: 40,
@@ -95,8 +95,8 @@ class Billing {
     static getAddiontalInfo(billing) {
         billing.car = Car.getById(billing.carId);
         billing.renter = Renter.getById(billing.renterId);
-        // TODO: this is wrong
-        billing.total = billing.car.price;
+        if(billing.status === Billing.Status.Unpaid)
+            this.calculateTotal(billing);
     }
 
     static getBillingsByRenterId(id) {
@@ -152,6 +152,17 @@ class Billing {
     }
     create() {
         billings.push(this);
+    }
+    static calculateTotal(billing) {
+        let endDaTe = billing.endDaTe;
+        if(!endDaTe)
+            endDaTe = Date.now();
+        let times = billing.endDate - billing.startDate;
+        let days = Math.ceil(times / (1000 * 60 * 60 * 24));
+        billing.total = billing.price * days;
+    }
+    static countByCarId(carId){
+        return billings.filter(o => o.carId === carId).length;
     }
 }
 

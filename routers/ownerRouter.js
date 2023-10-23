@@ -27,7 +27,7 @@ router.get("/register", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "register.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -39,7 +39,7 @@ router.get("/:id/cars/add", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "addcar.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -51,7 +51,7 @@ router.get("/:id/cars/:carId", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailcar.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -63,7 +63,7 @@ router.get("/:id/cars", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managecar.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -75,7 +75,7 @@ router.get("/:id/billings/:billingId", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "detailbilling.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -87,7 +87,7 @@ router.get("/:id/billings", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "managebilling.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -99,7 +99,7 @@ router.get("/:id", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "manage.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
@@ -111,7 +111,7 @@ router.get("/", async (req,res,next)=> {
     let script = await fs.readFile(path.join(__dirname, ".." , "public", "view", "owner", "index.js"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
-    htmlContent = htmlContent.replace('<style id = "custom-inline">',`<style id = "custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
     htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });

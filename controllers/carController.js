@@ -97,6 +97,30 @@ let carController = {
             res.status(404).json({ message: "Car not found."});
         }
     },
+    getTodayPicks: function(req,res,next) {
+        let limit = req.params.limit;
+        if (limit) {
+            res.status(200).json(Car.getTodayPicks(limit));            
+        } else {
+            res.status(400).json({"message": "Bad request"})
+        }
+    },
+    getAffordables: function(req,res,next) {
+        let limit = req.params.limit;
+        if (limit) {
+            res.status(200).json(Car.getAffordables(limit));            
+        } else {
+            res.status(400).json({"message": "Bad request"})
+        }
+    },
+    getHotPicks: function(req,res,next) {
+        let limit = req.params.limit;
+        if (limit) {
+            res.status(200).json(Car.getHotPicks(limit));            
+        } else {
+            res.status(400).json({"message": "Bad request"})
+        }
+    },
 }
 
 module.exports = carController;
