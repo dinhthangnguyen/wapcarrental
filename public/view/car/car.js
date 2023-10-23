@@ -59,7 +59,7 @@ document.getElementById("submit").addEventListener("click", async function (even
 
     if (response.ok) {
         let billing = await response.json();
-        window.location.href = `/billings/detail/${billing.id}`
+        window.location.href = `/billings/${billing.id}`
     } else {
         alert("Error: something went wrong: " + response.status);
     }
