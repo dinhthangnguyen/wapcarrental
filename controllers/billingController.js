@@ -75,6 +75,35 @@ let billingController = {
         } else{
             res.status(404).json({ message: "Bill not found."});
         }
+    },
+
+    payBill: function(req, res, next){
+        let {renterId, billId} = req.body;
+        if(!renterId || !billId){
+            res.status(400).json({"message": "Bad request, please provide renterId & billId"})
+            return;
+        }
+        let bill = Billing.pay(renterId, billId);
+        bill.available = true;
+        if(bill){
+            res.status(200).json(bill);
+        } else{
+            res.status(404).json({ message: "Bill not found."});
+        }
+    },
+    cancelBill: function(req, res, next){
+        let {renterId, billId} = req.body;
+        if(!renterId || !billId){
+            res.status(400).json({"message": "Bad request, please provide renterId & billId"})
+            return;
+        }
+        let bill = Billing.cancelBill(renterId, billId);
+        bill.available = true;
+        if(bill){
+            res.status(200).json(bill);
+        } else{
+            res.status(404).json({ message: "Bill not found."});
+        }
     }
 }
 

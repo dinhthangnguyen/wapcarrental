@@ -31,25 +31,26 @@ async function loadData() {
 }
 
 document.getElementById('bntPayment').addEventListener("click", (event) => {
-
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
-    let id = paths[2];
+    let params = paths.map(e=> Number(e)).filter(e => !!e)
+    let renterId = params[0];
+    let billId = params[1];
+
     const isConfirmed = window.confirm("Are you sure you want to pay for this order?");
     if (isConfirmed) {
-        payOrder(id);
+        payOrder(renterId,billId);
     } else {
     }
 })
 
-async function payOrder(id) {
-    let obj = { id};
+async function payOrder(renterId, billId) {
     let setting = {
         method: "POST",
-        body: JSON.stringify(obj),
+        body: JSON.stringify({renterId,billId}),
         headers: { "Content-Type": 'application/json' }
     }
-    let response = await fetch(`/billings/api/pay/${id}`, setting);
+    let response = await fetch(`/billings/api/pay`, setting);
     if (response.ok) {
         alert("Payment completed. Thank you!");
         location.reload();
@@ -57,25 +58,26 @@ async function payOrder(id) {
 }
 
 document.getElementById('btnCancel').addEventListener("click", (event) => {
-
     const pathname = window.location.pathname;
     let paths = pathname.split("/");
-    let id = paths[2];
+    let params = paths.map(e=> Number(e)).filter(e => !!e)
+    let renterId = params[0];
+    let billId = params[1];
+
     const isConfirmed = window.confirm("Are you sure you want to cancel this order?");
     if (isConfirmed) {
-        cancelOrder(id);
+        cancelOrder(renterId,billId);
     } else {
     }
 })
 
-async function cancelOrder(id) {
-    let obj = { id};
+async function cancelOrder(renterId, billId) {
     let setting = {
         method: "POST",
-        body: JSON.stringify(obj),
+        body: JSON.stringify({renterId,billId}),
         headers: { "Content-Type": 'application/json' }
     }
-    let response = await fetch(`${serverUrl}/billings/api/cancel/${id}`, setting);
+    let response = await fetch(`${serverUrl}/billings/api/cancel`, setting);
     if (response.ok) {
         alert("Cancel completed. Thank you!");
         location.reload();

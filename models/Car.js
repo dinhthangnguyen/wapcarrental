@@ -385,13 +385,6 @@ class Car {
         this.billings.push(bill);
     }
 
-    getBill(id) {
-
-    }
-
-    getProfitByMonth(month) {
-
-    }
     static getByOwnerId(ownerId) {
         return cars.filter(o => o.ownerId === ownerId);
     }
