@@ -1,8 +1,6 @@
 const serverUrl = "http://localhost:3000/cars/api";
 
 window.onload = async function () {
-    console.log("window onload");
-
     let response = await fetch(`${serverUrl}/cities`);
     if (response.ok) {
         let cities = await response.json();

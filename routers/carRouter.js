@@ -14,7 +14,6 @@ carRouter.get('/api/:id',carController.getCar);
 
 
 carRouter.get("/:id", async (req, res, next) => {
-    console.log("getID: " + req.params.id);
     let frameSet = await fsPromise.readFile(path.join(__dirname, "../public/view/common/index.html"));
     let style = await fsPromise.readFile(path.join(__dirname, "../public/view/common/style.css"));
     let component = await fsPromise.readFile(path.join(__dirname, "../public/view/car/car.html"));

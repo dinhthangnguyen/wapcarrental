@@ -13,7 +13,7 @@ let renterController = {
             return;
         }
 
-        let car = Car.getById(billing.carId);
+        let car = Car.getById(parseInt(carID));
         if (!car) {
             res.status(404).json({ "message": "car not found" });
             return;
@@ -31,7 +31,8 @@ let renterController = {
             );
             item.create();
         }
-        let billing = new Billing(Billing.generateId(),
+        let billing = new Billing(
+            Billing.generateId(),
             car.id,
             renter.id,
             idGenerator(10)

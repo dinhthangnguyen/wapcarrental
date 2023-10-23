@@ -7,7 +7,6 @@ window.onload = async function () {
     let response = await fetch(`${serverUrl}/cars/api/${carID}`);
     if (response.ok) {
         let car = await response.json();
-        console.log(car);
         loadUI(car);
     }
     else {
@@ -18,7 +17,7 @@ window.onload = async function () {
 function loadUI(car) {
     document.getElementById("carName").appendChild(document.createTextNode(`${car.make} ${car.model} ${car.year}`));
     document.getElementById("carDescription").appendChild(document.createTextNode(car.description ?? ""));
-    document.getElementById("rentPrice").appendChild(document.createTextNode(`$US ${car.price}/day`));
+    document.getElementById("rentPrice").appendChild(document.createTextNode(`${"$"}${car.price}/day`));
     let leftGallery = document.getElementById("leftGallery");
     let rightGallery = document.getElementById("rightGallery");
 
@@ -52,7 +51,6 @@ document.getElementById("submit").addEventListener("click", async function (even
     let license = document.getElementById("licenseInput").value;
     let phone = document.getElementById("phoneInput").value;
     let card = document.getElementById("cardInput").value;
-    console.log(name, email, address, license, phone, card);
     let response = await fetch(`${serverUrl}/rent/api`, {
         method: "POST",
         body: JSON.stringify({ name, email, address, license, phone, card, carID }),
@@ -61,7 +59,7 @@ document.getElementById("submit").addEventListener("click", async function (even
 
     if (response.ok) {
         let billing = await response.json();
-        window.location.href = `/billings/detail${billing.id}`
+        window.location.href = `/billings/detail/${billing.id}`
     } else {
         alert("Error: something went wrong: " + response.status);
     }

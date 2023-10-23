@@ -30,7 +30,7 @@ class Billing {
     }
 
     static generateId() {
-        let max = renters.map(o => o.id).reduce((a,b)=> {
+        let max = billings.map(o => o.id).reduce((a,b)=> {
             if (a > b) {
                 return a;
             }
