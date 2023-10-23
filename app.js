@@ -50,8 +50,8 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 app.get("/", async (req,res,next)=> {
     let frameSet = await fs.readFile(path.join(__dirname , "public", "view", "common", "index.html"));
-    let component = await fs.readFile(path.join(__dirname , "public", "view", "home", "index-ver2.html"));
-    let script = await fs.readFile(path.join(__dirname , "public", "view", "home", "index-ver2.js"));
+    let component = await fs.readFile(path.join(__dirname , "public", "view", "home", "index.html"));
+    let script = await fs.readFile(path.join(__dirname , "public", "view", "home", "index.js"));
     let style = await fs.readFile(path.join(__dirname , "public", "view", "home", "style.css"));
 
     let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
