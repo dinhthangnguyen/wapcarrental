@@ -10,6 +10,7 @@ router.get('/api/:id', billingController.getById);
 
 router.get('/api/track-order/:email/:order', billingController.getBillByOrderAndEmail);
 router.get('/api/track-email/:email/:license', billingController.getBillingsByEmailAndLicense);
+router.get('/api/:id/:orderId', billingController.getBillByRenterIdAndOrder);
 
 // router.post('/api/pay/:id', billingController.payBilling);
 

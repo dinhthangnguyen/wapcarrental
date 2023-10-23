@@ -1,44 +1,71 @@
-    <h2 class="text-center">Car Information</h2>
-    <div class="form-group row">
-        <div class="col-sm-6">
-            <label for="make" class="form-label mt-4">Make</label>
-            <input type="text" class="form-control" id="make" disabled placeholder="Enter Make">
-        </div>   
-        <div class="col-sm-6">
-            <label for="model" class="form-label mt-4">Model</label>
-            <input type="text" class="form-control" id="model" disabled placeholder="Enter Model">
-        </div>      
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-6">
-            <label for="year" class="form-label mt-4">Year</label>
-            <input type="number" class="form-control" id="year" disabled placeholder="Enter Year">
-        </div>   
-        <div class="col-sm-6">
-            <label for="price" class="form-label mt-4">Price Per Day</label>
-            <input type="number" class="form-control" id="price" disabled placeholder="Enter Price">
-        </div>      
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-6">
-            <label for="city" class="form-label mt-4">City</label>
-            <input type="text" class="form-control" id="city" disabled placeholder="Enter City"> 
-        </div>        
-    </div>
-    <hr>
-    <h2 class="text-center">Billing Information</h2>
-    <div class="form-group row">
-        <div class="col-sm-6">
-            <label for="orderNumber" class="form-label mt-4">OrderNumber</label>
-        <input type="text" class="form-control" id="orderNumber" disabled placeholder="Enter Order Number">
-        </div>   
-        <div class="col-sm-6">
-            <label for="Total" class="form-label mt-4">Total</label>
-            <input type="text" class="form-control" id="total" disabled placeholder="Enter Total">
-        </div>      
-    </div>
-    <button type="button" id="btnBack" class="btn btn-outline-primary"><a href="/billings/track-order" value>Back</a></button>
-    <button type="button" id="bntPayment" class="btn btn-primary">Pay</button>
-    <button type="button" id="btnCancel" class="btn btn-warning">Cancel Order</button>
-</form>
+<div class="container">
+    <div style="margin-top: 20px;"></div>
 
+    <div class="row">
+        <h2 class="text-center">Car Information</h2>
+        <form id="verify-form">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="make" class="form-label mt-4">Make</label>
+                    <input type="text" class="form-control" id="make" disabled placeholder="Enter Make">
+                </div>
+                <div class="col-sm-6">
+                    <label for="model" class="form-label mt-4">Model</label>
+                    <input type="text" class="form-control" id="model" disabled placeholder="Enter Model">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="year" class="form-label mt-4">Year</label>
+                    <input type="number" class="form-control" id="year" disabled placeholder="Enter Year">
+                </div>
+                <div class="col-sm-6">
+                    <label for="city" class="form-label mt-4">City</label>
+                    <input type="text" class="form-control" id="city" disabled placeholder="Enter City">
+                </div>
+            </div>
+           
+            <hr>
+            <h2 class="text-center">Billing Information</h2>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="orderNumber" class="form-label mt-4">OrderNumber</label>
+                    <input type="text" class="form-control" id="orderNumber" disabled placeholder="Enter Order Number">
+                </div>
+                <div class="col-sm-6">
+                    <label for="status" class="form-label mt-4">Status</label>
+                    <input type="text" class="form-control" id="status" disabled placeholder="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="price" class="form-label mt-4">Price Per Day</label>
+                    <input type="number" class="form-control" id="price" disabled placeholder="Enter Price">
+                </div>
+                <div class="col-sm-6">
+                    <label for="Total" class="form-label mt-4">Total</label>
+                    <input type="text" class="form-control" id="total" disabled placeholder="Enter Total">
+                </div>
+            </div>
+            <div class="form-group row">
+           
+                <div class="col-sm-6">
+                    <label for="startDate" class="form-label mt-4">Start</label>
+                    <input type="text" class="form-control" id="startDate" disabled placeholder="">
+                </div>
+
+                <div class="col-sm-6" id="endBox">
+                    <label for="startDate" class="form-label mt-4">End</label>
+                    <input type="text" class="form-control" id="startDate" disabled placeholder="">
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="button" id="bntPayment" class="btn btn-primary">Pay</button>
+                <button type="button" id="btnCancel" class="btn btn-danger">Cancel Order</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
