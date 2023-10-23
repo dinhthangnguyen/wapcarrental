@@ -164,8 +164,8 @@ class Billing {
         
         billings[index].status = Billing.Status.Paid;
         billings[index].endDate = Date.now();
-        let days = (this.endDate - this.startDate)/(24*3600*1000);
-        billings[index].total = this.price * (days <= 0 ? 1: days);
+        let days = Math.ceil((billings[index].endDate - billings[index].startDate)/(24*3600*1000));
+        billings[index].total = billings[index].price * (days <= 0 ? 1: days);
         return billings[index];
     }
 
@@ -179,8 +179,7 @@ class Billing {
         
         billings[index].status = Billing.Status.Canceled;
         billings[index].endDate = Date.now();
-        let days = (this.endDate - this.startDate)/(24*3600*1000);
-        billings[index].total = this.price * (days <= 0 ? 1: days);
+        billings[index].total = 0;
         return billings[index];
     }
 

@@ -63,13 +63,11 @@ let billingController = {
             return;
         }
         let renter = Renter.getById(parseInt(id));
-        console.log(id,orderId);
         if (!renter) {
             res.status(404).json({"message": "Renter Not found"})
             return;
         }
         let bill = Billing.getBillingsByRenterIdAndOrderId(renter.id, orderId);
-        console.log(bill);
         if(bill){
             res.status(200).json(bill);
         } else{
