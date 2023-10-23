@@ -161,6 +161,9 @@ class Billing {
         let days = Math.ceil(times / (1000 * 60 * 60 * 24));
         billing.total = billing.price * days;
     }
+    static countByCarId(carId){
+        return billings.filter(o => o.carId === carId).length;
+    }
 }
 
 

@@ -48,9 +48,17 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.status(200).json({ success: true, message: 'File uploaded successfully!', filePath, fileName });
 });
 
-app.use("/", (req,res,next)=> {
-    res.sendFile(path.join(__dirname,"/public/view/home/index.html"));
-})
+app.get("/", async (req,res,next)=> {
+    let frameSet = await fs.readFile(path.join(__dirname , "public", "view", "common", "index.html"));
+    let component = await fs.readFile(path.join(__dirname , "public", "view", "home", "index-ver2.html"));
+    let script = await fs.readFile(path.join(__dirname , "public", "view", "home", "index-ver2.js"));
+    let style = await fs.readFile(path.join(__dirname , "public", "view", "home", "style.css"));
+
+    let htmlContent = frameSet.toString().replace('<div class="row main-content">',`<div class="row main-content">${component.toString()}`);
+    htmlContent = htmlContent.replace('<style id="custom-inline">',`<style id="custom-inline">${style.toString()}`);
+    htmlContent = htmlContent.replace('<script id="additional-script">',`<script id="additional-script">${script.toString()}`);
+    res.send(htmlContent);
+});
 
 app.use((err,req,res,next)=> {
     res.status(500).json({message: "Somewthing went wrong: " + err.message});

@@ -1,3 +1,4 @@
+const Billing = require("./Billing")
 let cars = [
     {
         id: 1,
@@ -31,7 +32,8 @@ let cars = [
             "616944_4.jpg",
         ],
         city: "Fairfield",
-        available: true
+        available: true,
+        description: "Sleek and stylish, the 2012 Toyota Camry is a standout choice for your travel needs. With a modern design and reliable performance, this Camry offers a comfortable ride and excellent fuel efficiency. Affordable and available for rent in Fairfield, it's the perfect option for those seeking a combination of style and practicality."
 
     },
     {
@@ -48,8 +50,8 @@ let cars = [
             "616920_4.jpg"
         ],
         city: "Ottumwa",
-        available: true
-
+        available: true,
+        description: "Experience luxury and performance with the 2023 Honda Accord. This latest model boasts cutting-edge features, a stunning design, and powerful performance on the road. Available for rent in Ottumwa, the 2023 Accord is perfect for those who appreciate the finer things in life and want to make a statement on the road."
     },
     {
         id: 4,
@@ -66,7 +68,8 @@ let cars = [
             "616949_5.jpg",
         ],
         city: "Fairfield",
-        available: true
+        available: true,
+        description: "Enjoy a smooth and comfortable ride with the 2018 Toyota Corolla. This well-maintained vehicle is both reliable and affordable, making it an excellent choice for your travels in Fairfield. With a sleek design and efficient fuel economy, the Corolla is a practical and stylish option for those looking for a hassle-free rental experience."
     },
     {
         id: 5,
@@ -82,8 +85,8 @@ let cars = [
             "616943_4.jpg"
         ],
         city: "Ottumwa",
-        available: true
-
+        available: true,
+        description: "Embark on your journey with the 2021 Toyota RAV4, a versatile and reliable SUV. With its modern design and advanced features, the RAV4 is perfect for both city driving and off-road adventures. Available for rent in Ottumwa, this SUV offers a comfortable and spacious interior, making it an ideal choice for families and adventurers alike."
     },
     {
         id: 6,
@@ -100,8 +103,8 @@ let cars = [
             "616923_5.jpg",
         ],
         city: "Mount Pleasant",
-        available: true
-
+        available: true,
+        description: "Embark on your journey with the 2021 Toyota RAV4, a versatile and reliable SUV. With its modern design and advanced features, the RAV4 is perfect for both city driving and off-road adventures. Available for rent in Ottumwa, this SUV offers a comfortable and spacious interior, making it an ideal choice for families and adventurers alike."
     },
     {
         id: 7,
@@ -117,7 +120,8 @@ let cars = [
             "616923_9.jpg"
         ],
         city: "Mount Pleasant",
-        available: true
+        available: true,
+        description: "Discover the innovative Vinfast VF9 Electric, a futuristic electric vehicle designed for sustainability and performance. With a sleek and modern design, this electric car offers an eco-friendly driving experience. Available for rent in Mount Pleasant, the VF9 Electric is perfect for those who appreciate cutting-edge technology and want to contribute to a greener future."
 
     },
     {
@@ -135,7 +139,8 @@ let cars = [
             "616940_10.jpg",
         ],
         city: "Fairfield",
-        available: true
+        available: true,
+        description: "Navigate the streets with confidence in the 2019 Honda CRV. This reliable and spacious SUV is well-suited for both city driving and long trips. Available for rent in Fairfield, the CRV offers a comfortable interior, advanced safety features, and a stylish design. Enjoy a smooth and enjoyable driving experience with this versatile and practical SUV."
     },
     {
         id: 9,
@@ -152,7 +157,8 @@ let cars = [
             "616901_5.jpg",
         ],
         city: "Ottumwa",
-        available: true
+        available: true,
+        description: "Embrace the future of automotive technology with the 2019 Tesla Model 3. This electric car offers a combination of performance, style, and efficiency. With a sleek design and cutting-edge features, the Model 3 is available for rent in Ottumwa. Experience the thrill of electric driving and contribute to a sustainable future with this high-tech Tesla."
     },
     {
         id: 10,
@@ -168,7 +174,8 @@ let cars = [
             "616901_9.jpg",
         ],
         city: "Ottumwa",
-        available: true
+        available: true,
+        description: "Experience the versatility of the 2019 Tesla Model Y, a compact electric SUV designed for modern living. With an innovative design and advanced technology, the Model Y offers a spacious interior and impressive performance. Available for rent in Ottumwa, this electric SUV is perfect for those who seek a balance of style, efficiency, and environmental consciousness."
     },
     {
         id: 11,
@@ -183,7 +190,8 @@ let cars = [
             "616944_7.jpg"
         ],
         city: "Fairfield",
-        available: true
+        available: true,
+        description: "Experience the versatility of the 2019 Tesla Model Y, a compact electric SUV designed for modern living. With an innovative design and advanced technology, the Model Y offers a spacious interior and impressive performance. Available for rent in Ottumwa, this electric SUV is perfect for those who seek a balance of style, efficiency, and environmental consciousness."
     },
 ];
 
@@ -388,6 +396,46 @@ class Car {
     }
     static getById(id){
         return cars.find(o => o.id === id);
+    }
+
+    static getTodayPicks(limit) {
+        return cars.filter(car => car.available).slice(0, limit);
+    }
+
+    static getAffordables(limit) {
+        let array = cars
+            .filter(car => car.available);
+            
+        array = array.sort((a1, a2) => {
+            if (a1.price > a2.price) {
+                return 1;
+            }
+            else if (a1.price < a2.price) {
+                return -1;
+            }
+            return 0;
+        }).slice(0, limit);
+        return array;
+    }
+
+    static getHotPicks(limit) {
+        let array = cars
+            .filter(car => car.available);
+
+        for(let car of array){
+            car.BillingCount = Billing.countByCarId(car.id);
+        }
+
+        array = array.sort((a1, a2) => {
+            if (a1.BillingCount < a2.BillingCount) {
+                return 1;
+            }
+            else if (a1.BillingCount > a2.BillingCount) {
+                return -1;
+            }
+            return 0;
+        }).slice(0, limit);
+        return array;
     }
 }
 
