@@ -9,9 +9,9 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css"
         integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
-    <style id = "custom-inline">
+    <style id="custom-inline"></style>
+    <style id="custom-inline2"></style>
 
-    </style>
 </head>
 
 <body>
@@ -33,8 +33,14 @@
                         <span class="visually-hidden">(current)</span>
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/billings/track-order">Track Order</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Track Order</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/billings/track-order">By Order Number</a>
+                            <a class="dropdown-item" href="/billings/track-email">By Email</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/abouts">About</a>
@@ -49,7 +55,7 @@
 
     <div class="container">
         <div class="row main-content">
-            
+
         </div>
     </div>
 
