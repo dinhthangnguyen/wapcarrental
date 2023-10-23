@@ -14,27 +14,19 @@ async function loadData() {
         document.getElementById('make').value = billing.car.make;
         document.getElementById('model').value = billing.car.model;
         document.getElementById('year').value = billing.car.year;
-        document.getElementById('price').value = `${"$"} ${billing.price}`;
         document.getElementById('city').value = billing.car.city;
 
         document.getElementById('orderNumber').value = billing.orderNumber;
-        document.getElementById('total').value = billing.total;
+        document.getElementById('total').value = `${"$"} ${billing.total}`;
+        document.getElementById('status').value = billing.status;
+        document.getElementById('startDate').value =  new Date(billing.startDate).toLocaleDateString('en-US');
+        document.getElementById('endDate').value = billing.endDate ? new Date(billing.endDate).toLocaleDateString('en-US') : "N/A";
+        document.getElementById('price').value = billing.price;
 
-        if(billing.status === 'Cancelled' || billing.status === 'Paid') {
+        if(billing.status === 'Canceled' || billing.status === 'Paid') {
             document.getElementById('bntPayment').setAttribute('class','btn btn-primary d-none');
             document.getElementById('btnCancel').setAttribute('class','btn btn-danger d-none');
         }
-
-
-        // if(billing.status != 'Unpaid' || billing.status)
-        //     document.getElementById('bntPayment').setAttribute('class','btn btn-primary d-none');
-        // else
-        //     document.getElementById('bntPayment').setAttribute('class','btn btn-primary');
-
-        // if(billing.status != 'Unpaid' && billing.status != 'Paid')
-        //     document.getElementById('btnCancel').setAttribute('class','btn btn-warning d-none');
-        // else
-        //     document.getElementById('btnCancel').setAttribute('class','btn btn-warning');
     }
 }
 
