@@ -326,6 +326,47 @@ class Car {
         cars.push(car);
     }
 
+    update() {
+        this.id = parseInt(this.id);
+        this.ownerId = parseInt(this.ownerId);
+        let index = cars.findIndex(o => o.id === this.id);
+        if(index > -1){
+            cars.splice(index, 1, this);
+            return this;
+        }
+        return this;
+    }
+    
+    static getMaxId() {
+        return cars.map(o => o.id).sort((a, b) => a - b).pop();
+    }
+
+    static removeById(id) {
+        let index = cars.findIndex(o => o.id === id);
+        let deletedCar;
+        if(index > -1){
+            deletedCar = cars[index];
+            cars.splice(index, 1);
+        }
+        return deletedCar;
+    }
+
+    static removeImgById(id, img) {
+        let car = cars.find(o => o.id === id);
+        if(car){
+            let deleteImg = car.images.findIndex(o => o === img);
+            car.images.splice(deleteImg, 1);
+        }
+        return car;
+    }
+    static addImgById(id, img) {
+        let car = cars.find(o => o.id === id);
+        if(car){
+            car.images.push(img);
+        }
+        return car;
+    }
+
     addBill(bill) {
         this.billings.push(bill);
     }

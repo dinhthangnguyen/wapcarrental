@@ -50,7 +50,7 @@ let ownerController = {
         if(updatedOwner){
             res.status(200).json(updatedOwner);
         } else{
-            res.status(404).json({ message: "student not found."});
+            res.status(404).json({ message: "Owner not found."});
         }
     },
     registerOwner: function(req, res, next){      

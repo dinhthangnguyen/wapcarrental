@@ -45,6 +45,47 @@ let carController = {
             res.status(400).json({"message": "Bad request, please provide id"})
         }
     },
+    updateCar: function(req, res, next){
+        let {id, make, model, year, price, ownerId, city} = req.body;
+        id = parseInt(req.params.id);
+
+        let updatedCar = new Car(id, make, model, year, price, ownerId, city).update();
+        if(updatedCar){
+            res.status(200).json(updatedCar);
+        } else{
+            res.status(404).json({ message: "Car not found."});
+        }
+    },
+    deleteCar: function(req, res, next){
+        let id = parseInt(req.params.id);
+
+        let deletedCar = Car.removeById(id);
+        if(deletedCar){
+            res.status(200).json(deletedCar);
+        } else{
+            res.status(404).json({ message: "Car not found."});
+        }
+    },
+    deleteImage: function(req, res, next){
+        let id = parseInt(req.params.id);
+        let img = req.body.img;
+        let car = Car.removeImgById(id,img);
+        if(car){
+            res.status(200).json(car);
+        } else{
+            res.status(404).json({ message: "Car not found."});
+        }
+    },
+    addImage: function(req, res, next){
+        let id = parseInt(req.params.id);
+        let img = req.body.img;
+        let car = Car.addImgById(id,img);
+        if(car){
+            res.status(200).json(car);
+        } else{
+            res.status(404).json({ message: "Car not found."});
+        }
+    },
 }
 
 module.exports = carController;

@@ -9,7 +9,7 @@ async function loadData() {
         let cars = await response.json();
         let bool = false;
         for (let car of cars) {
-            addRowToTable(car, bool);
+            addRowToTable(id, car, bool);
             bool = !bool;
         }
     }
@@ -23,11 +23,11 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     window.location.href = `${serverUrl}/owners/${id}`;
 })
 
-function addRowToTable(car, color) {
+function addRowToTable(id, car, color) {
     let row = document.createElement("tr");
     row.setAttribute("id", car.id);
     row.addEventListener("click", () => {
-        openCarDetail(car.id);
+        openCarDetail(id, car.id);
     })
     row.className = color ? "table-success" : "table-secondary";
     let{city,make,model,year, price}  = car;
@@ -41,8 +41,8 @@ function addRowToTable(car, color) {
 
 }
 
-function openCarDetail(id)  {
-    window.location.href = `/cars/${id}`
+function openCarDetail(id, carId)  {
+    window.location.href = `/owners/${id}/cars/${carId}`
 }
 
 window.onload = loadData;
