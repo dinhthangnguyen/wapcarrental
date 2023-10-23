@@ -2,15 +2,15 @@ let renters = [
     {
         id: 1,
         name: "Vincent Nguyen",
-        phone: "+1 941 233 4233",
+        phone: "6412339636",
         billingAddress: "1001 N Main Street",
-        email: "vin@gmail.com",
+        email: "vincent@gmail.com",
         creditCard: 94356744561
       },
       {
         id: 2,
         name: "Steven N",
-        phone: "+1 941 434 5545",
+        phone: "414345545",
         billingAddress: "1002 N 4th Street",
         email: "gtran@miu.edu",
         creditCard: 94356754545
@@ -18,7 +18,7 @@ let renters = [
     {
         id: 3,
         name: "Christ Cruise",
-        phone: "+1 941 233 8778",
+        phone: "9412338778",
         billingAddress: "123 W Burlington Avenue",
         email: "christc@hotmail.com",
         creditCard: 43456744561
@@ -26,7 +26,7 @@ let renters = [
     {
         id: 4,
         name: "Adam Smiths",
-        phone: "+1 941 233 12312",
+        phone: "4123312312",
         billingAddress: "1000 Wapallo",
         email: "adams@hotmail.com",
         creditCard: 53563453455
@@ -48,9 +48,13 @@ class Renter {
         return renters.find(o => o.id === id);
     }
 
-    static getRenterByEmail(email) {
+    static getRenterByEmailOrPhone(email) {
         let renter = renters.find(o => o.email.toLowerCase() === email.toLowerCase());
-        return renter;
+        if (renter) {
+            return renter;
+        } else {
+           return renters.find(o => o.phone.toLowerCase() === email.toLowerCase());
+        }
     }
 
     static generateId() {
