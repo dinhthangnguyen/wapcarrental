@@ -14,16 +14,18 @@ document.getElementById("btnSearch").addEventListener("click", async function (e
     let response = await fetch(`${serverUrl}/billings/api/track-email/${email}`);
     if (response.ok) {
         document.getElementById("tbody").innerHTML = "";
-        let billings = await response.json();
+        let { renter, billings } = await response.json();
         for (const bill of billings) {
-            let endDate = bill.endDate ? new Date(bill.endDate).toLocaleDateString('en-US'): "N/A"
+            let endDate = bill.endDate ? new Date(bill.endDate).toLocaleDateString('en-US') : "N/A"
             addRowToTable(
                 bill.orderNumber,
                 `${bill.car.make} ${bill.car.model} ${bill.car.year}`,
                 new Date(bill.startDate).toLocaleDateString('en-US'),
                 endDate,
                 `${"$"}${bill.total}`,
-                bill.status
+                bill.status,
+                renter.id,
+                bill.id
             )
         }
     } else {
@@ -31,9 +33,14 @@ document.getElementById("btnSearch").addEventListener("click", async function (e
     }
 });
 
-function addRowToTable(order, carname, start, stop, total, status) {
+function addRowToTable(order, carname, start, stop, total, status, renterId, billId) {
     let row = document.createElement("tr");
-    for (const item of arguments) {
+    row.addEventListener("click", () => {
+        window.location.href = `${serverUrl}/rent/${renterId}/billing/${billId}`
+    })
+
+    let items = [order, carname, start, stop, total, status];
+    for (const item of items) {
         let td = document.createElement("td");
         td.appendChild(document.createTextNode(item));
         row.appendChild(td);

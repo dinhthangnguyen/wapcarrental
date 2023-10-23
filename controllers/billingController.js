@@ -32,14 +32,15 @@ let billingController = {
             return;
         }
         let renter = Renter.getRenterByEmailOrPhone(email);
-
+        delete renter.creditCard;
+        
         if (!renter) {
             res.status(404).json({"message": "Not found"})
             return;
         }
         let billings = Billing.getBillingsByRenterId(renter.id);
         if(billings){
-            res.status(200).json(billings);
+            res.status(200).json({renter, billings});
         } else{
             res.status(404).json({ message: "Billing not found."});
         }
