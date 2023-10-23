@@ -8,13 +8,14 @@ async function loadData() {
         let contentHTML = "";
         for(let car of cars){
 
-            contentHTML = contentHTML.concat(`<div class="col-md-4">
+            contentHTML = contentHTML.concat(`<div class="col-md-4" style="margin-bottom:20px">
                                                 <div class="card mb-4 h-100 d-flex flex-column">
-                                                    <img src="../../img/${car.images[0]}" class="card-img-top flex-grow-1" alt="${car.images[0]}">
+                                                    <img src="../../img/${car.images[0]}" class="card-img-top flex-grow-1" alt="${car.images[0]}" style="height: 300px; width: 100%; object-fit: cover;">
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
-                                                        <p class="card-text">${car.description}</p>
-                                                        <p class="card-text">Price per day ${"$"} ${car.price}</p>
+                                                        <p class="card-text" style="max-height: 3em; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
+                                                        <p class="card-text">Price per day ${"$"}${car.price}</p>
+                                                        <p class="card-text">City: ${car.city}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
@@ -29,13 +30,14 @@ async function loadData() {
         let cars = await response2.json();
         let contentHTML = "";
         for(let car of cars){
-            contentHTML = contentHTML.concat(`<div class="col-md-4">
+            contentHTML = contentHTML.concat(`<div class="col-md-4" style="margin-bottom:20px">
                                                 <div class="card mb-4 h-100 d-flex flex-column">
-                                                    <img src="../../img/${car.images[0]}" class="card-img-top flex-grow-1" alt="${car.images[0]}">
+                                                    <img src="../../img/${car.images[0]}" class="card-img-top flex-grow-1" alt="${car.images[0]}" style="height: 300px; width: 100%; object-fit: cover;">
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
-                                                        <p class="card-text">${car.description}</p>
-                                                        <p class="card-text">Price per day ${"$"} ${car.price}</p>
+                                                        <p class="card-text" style="max-height: 3em; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
+                                                        <p class="card-text">Price per day ${"$"}${car.price}</p>
+                                                        <p class="card-text">City: ${car.city}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
@@ -50,13 +52,14 @@ async function loadData() {
         let cars = await response3.json();
         let contentHTML = "";
         for(let car of cars){
-            contentHTML = contentHTML.concat(`<div class="col-md-4">
+            contentHTML = contentHTML.concat(`<div class="col-md-4" style="margin-bottom:20px">
                                                 <div class="card mb-4 h-100 d-flex flex-column">
-                                                    <img src="../../img/${car.images[0]}" class="card-img-top flex-grow-1" alt="${car.images[0]}">
+                                                    <img src="../../img/${car.images[0]}" class="card-img-top flex-grow-1" alt="${car.images[0]}" style="height: 300px; width: 100%; object-fit: cover;">
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
-                                                        <p class="card-text">${car.description}</p>
-                                                        <p class="card-text">Price per day ${"$"} ${car.price}</p>
+                                                        <p class="card-text" style="max-height: 3em; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
+                                                        <p class="card-text">Price per day ${"$"}${car.price}</p>
+                                                        <p class="card-text">City: ${car.city}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
