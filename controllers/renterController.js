@@ -29,7 +29,7 @@ let renterController = {
                 card,
                 license
             );
-            item.create();
+            renter.create();
         }
         let billing = new Billing(
             Billing.generateId(),

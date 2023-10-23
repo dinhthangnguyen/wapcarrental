@@ -99,12 +99,6 @@ class Renter {
     create() {
         renters.push(this);
     }
-
-
-    getBill = function (params) {
-
-    }
-
     
 }
 
