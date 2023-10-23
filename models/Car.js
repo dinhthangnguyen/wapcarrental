@@ -15,7 +15,7 @@ let cars = [
             "616940_5.jpg",
         ],
         city: "Fairfield",
-        available: true,
+        available: false,
         description: "Clean hybrid efficent vehicle. 50 mpg. you save a lot of money and the renting price is cheapest here in Fairfield"
     },
     {
@@ -32,7 +32,7 @@ let cars = [
             "616944_4.jpg",
         ],
         city: "Fairfield",
-        available: true,
+        available: false,
         description: "Sleek and stylish, the 2012 Toyota Camry is a standout choice for your travel needs. With a modern design and reliable performance, this Camry offers a comfortable ride and excellent fuel efficiency. Affordable and available for rent in Fairfield, it's the perfect option for those seeking a combination of style and practicality."
 
     },
