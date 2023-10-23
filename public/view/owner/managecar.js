@@ -45,4 +45,12 @@ function openCarDetail(id, carId)  {
     window.location.href = `/owners/${id}/cars/${carId}`
 }
 
+document.getElementById('btnAdd').addEventListener("click", (event) => {
+
+    const pathname = window.location.pathname;
+    let paths = pathname.split("/");
+    let id = paths[2];
+    window.location.href = `${serverUrl}/owners/${id}/cars/add`;
+})
+
 window.onload = loadData;

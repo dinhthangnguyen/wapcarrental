@@ -45,6 +45,17 @@ let carController = {
             res.status(400).json({"message": "Bad request, please provide id"})
         }
     },
+    addCar: function(req, res, next){      
+        let { make, model, year, price, ownerId, city} = req.body;
+        id = Car.getMaxId() + 1;
+        ownerId = parseInt(ownerId);
+        if(id && make && model && year && price && ownerId && city){
+            let car = new Car(id, make, model, year, price, ownerId, city).create();
+            res.status(201).json(car);
+        } else {
+            res.status(400).json({message: "Provide all data."});
+        }
+    },
     updateCar: function(req, res, next){
         let {id, make, model, year, price, ownerId, city} = req.body;
         id = parseInt(req.params.id);
