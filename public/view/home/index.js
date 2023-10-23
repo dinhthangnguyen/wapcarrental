@@ -14,7 +14,7 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text">${car.description}</p>
-                                                        <a href="/cars/${car.id}" class="btn btn-primary mt-auto">View Details</a>
+                                                        <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
                                             </div>`)
@@ -34,7 +34,7 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text">${car.description}</p>
-                                                        <a href="/cars/${car.id}" class="btn btn-primary mt-auto">View Details</a>
+                                                        <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
                                             </div>`)
@@ -54,7 +54,7 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text">${car.description}</p>
-                                                        <a href="/cars/${car.id}" class="btn btn-primary mt-auto">View Details</a>
+                                                        <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
                                             </div>`)
@@ -65,18 +65,4 @@ async function loadData() {
 }
 
 window.onload = loadData;
-
-
-
-
-{/* <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="../../img/616901_1.jpg" class="card-img-top" alt="Product 1">
-          <div class="card-body">
-            <h5 class="card-title">Product 1</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-primary">View Details</a>
-          </div>
-        </div>
-      </div> */}
 
