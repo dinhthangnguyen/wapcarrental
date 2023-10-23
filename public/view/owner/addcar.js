@@ -18,12 +18,12 @@ document.getElementById('btnAdd').addEventListener("click", (event) => {
     let year = document.getElementById('year').value;
     let price = document.getElementById('price').value;
     let city = document.getElementById('city').value;
-
-    addCar(ownerId, make, model, year, price, city);
+    let description = document.getElementById('description').value;
+    addCar(ownerId, make, model, year, price, city, description);
 })
 
-async function addCar(ownerId, make, model, year, price, city) {
-    let obj = {ownerId, make, model, year, price, city};
+async function addCar(ownerId, make, model, year, price, city, description) {
+    let obj = {ownerId, make, model, year, price, city, description};
     let setting = {
         method: "POST",
         body: JSON.stringify(obj),

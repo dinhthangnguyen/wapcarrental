@@ -13,7 +13,7 @@ async function loadData() {
         document.getElementById('year').value = car.year;
         document.getElementById('price').value = car.price;
         document.getElementById('city').value = car.city;
-        
+        document.getElementById('description').value = car.description;
         let bool = false;
         for (let img of car.images) {
             addRowToTable(id, img, bool);
@@ -30,8 +30,8 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     window.location.href = `${serverUrl}/owners/${ownerId}/cars`;
 })
 
-async function updateCar(ownerId, id, make, model, year, price, city) {
-    let obj = {ownerId, id, make, model, year, price, city};
+async function updateCar(ownerId, id, make, model, year, price, city, description) {
+    let obj = {ownerId, id, make, model, year, price, city, description};
     let setting = {
         method: "PUT",
         body: JSON.stringify(obj),
@@ -74,8 +74,8 @@ document.getElementById('btnUpdate').addEventListener("click", (event) => {
     let year = document.getElementById('year').value;
     let price = document.getElementById('price').value;
     let city = document.getElementById('city').value;
-
-    updateCar(ownerId, id, make, model, year, price, city);
+    let description = document.getElementById('description').value;
+    updateCar(ownerId, id, make, model, year, price, city, description);
 })
 
 document.getElementById('btnDelete').addEventListener("click", (event) => {

@@ -199,7 +199,7 @@ let cars = [
 class Car {
     static #all = "All";
 
-    constructor(id, make, model, year, price, ownerId, city) {
+    constructor(id, make, model, year, price, ownerId, city, description) {
         this.id = id;
         this.make = make;
         this.year = year;
@@ -210,6 +210,7 @@ class Car {
         this.images = []
         this.ownerId = ownerId;
         this.city = city;
+        this.description = description;
     }
 
     static getCities() {
