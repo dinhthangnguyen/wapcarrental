@@ -1,3 +1,5 @@
+    //TODO:  remove this
+
 const Car = require('./Car')
 const Billing = require('./Billing')
 
@@ -92,10 +94,12 @@ class Owner {
         return owners.find(o => o.id === id);
     }
 
+    //TODO:  remove this
     static getCarsById(id) {
         return Car.getByOwnerId(id);
     }
 
+        //TODO:  remove this
     static getBilingsById(id) {
         return Billing.getByOwnerId(id);
     }

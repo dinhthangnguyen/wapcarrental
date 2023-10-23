@@ -1,5 +1,3 @@
-const Car = require('./Car');
-const Renter = require('./Renter');
 
 let billings = [
     {
@@ -95,20 +93,15 @@ class Billing {
             billing = new Billing(id, carId, renterId, orderNumber, status);
             billings.splice(index, 1, billing);
         }
-        this.getAddiontalInfo(billing);
         return billing;
     }
     static getByOrderNumber(orderNumber) {
         return billings.find(o => o.orderNumber === orderNumber);
     }
-    static getAddiontalInfo(billing) {
-        billing.car = Car.getById(billing.carId);
-        billing.renter = Renter.getById(billing.renterId);
-    }
+  
 
     static getBillingsByRenterId(id) {
         return billings.filter(e => e.renterId === parseInt(id)).map(e => {
-            this.getAddiontalInfo(e);
             return e;
         }).sort((e1,e2)=> {
             if (e1.startDate > e2.startDate) {
@@ -123,18 +116,12 @@ class Billing {
     static getBillingsByRenterIdAndOrderNumber(renterId, order) {
         let item = billings.filter(e => e.renterId === parseInt(renterId))
             .find(e => e.orderNumber.toUpperCase() === order.toUpperCase())
-        if (item) {
-            this.getAddiontalInfo(item);
-        }
         return item;
     }
 
     static getBillingsByRenterIdAndOrderId(renterId, orderId) {
         let item = billings.filter(e => e.renterId === parseInt(renterId))
             .find(e => e.id === parseInt(orderId))
-        if (item) {
-            this.getAddiontalInfo(item);
-        }
         return item;
     }
 
@@ -149,8 +136,10 @@ class Billing {
     }
 
     static getByOwnerId(ownerId) {
+                // TODO: this line have to be removed
         let cars = Car.getByOwnerId(ownerId).map(o => o.id);
         let ownerBillings = billings.filter(o => cars.indexOf(o.carId) > -1);
+        // TODO: this line have to be removed
         ownerBillings.forEach(o => this.getAddiontalInfo(o));
         return ownerBillings;
     }

@@ -1,5 +1,11 @@
 const Billing = require('../models/Billing');
 const Renter = require('../models/Renter');
+const Car = require('../models/Car');
+
+function getAddiontalInfo(billing) {
+    billing.car = Car.getById(billing.carId);
+    billing.renter = Renter.getById(billing.renterId);
+}
 
 let billingController = { 
     getById: function(req, res, next){
@@ -7,6 +13,7 @@ let billingController = {
         if(id){
             let billing = Billing.getById(id);
             if(billing){
+                getAddiontalInfo(billing);
                 res.status(200).json(billing);
             } else{
                 res.status(404).json({ message: "Billing not found."});
@@ -31,7 +38,12 @@ let billingController = {
 
         let billings = Billing.getBillingsByRenterId(renter.id);
         if(billings){
-            res.status(200).json({renter, billings});
+            let result = billings.map(e=> {
+                getAddiontalInfo(e);
+                return e;
+            })
+
+            res.status(200).json({renter, billings: result});
         } else{
             res.status(404).json({ message: "Billing not found."});
         }
@@ -50,6 +62,7 @@ let billingController = {
         }
         let bill = Billing.getBillingsByRenterIdAndOrderNumber(renter.id, order);
         if(bill){
+            getAddiontalInfo(bill);
             res.status(200).json(bill);
         } else{
             res.status(404).json({ message: "Bill not found."});
@@ -69,6 +82,7 @@ let billingController = {
         }
         let bill = Billing.getBillingsByRenterIdAndOrderId(renter.id, orderId);
         if(bill){
+            getAddiontalInfo(bill);
             res.status(200).json(bill);
         } else{
             res.status(404).json({ message: "Bill not found."});
