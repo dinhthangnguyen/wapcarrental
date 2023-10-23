@@ -20,7 +20,6 @@ document.getElementById("btnlogin").addEventListener("click", async (event) => {
             window.location.href = response.url;
         }
     } else {
-        console.log(response);
         document.getElementById('emailHelp').textContent = response.message;
     }
     } catch (error) {

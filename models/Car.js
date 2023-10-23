@@ -279,7 +279,6 @@ class Car {
     }
 
     static getCars(city, make, model, year) {
-        console.log(typeof year);
         let array = cars
             .filter(car => car.available)
             .filter(car => {
