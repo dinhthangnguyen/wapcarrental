@@ -5,7 +5,8 @@ let renters = [
         phone: "6412339636",
         billingAddress: "1001 N Main Street",
         email: "vincent@gmail.com",
-        creditCard: 94356744561
+        creditCard: 94356744561,
+        license: "DL1234124",
       },
       {
         id: 2,
@@ -13,7 +14,8 @@ let renters = [
         phone: "414345545",
         billingAddress: "1002 N 4th Street",
         email: "gtran@miu.edu",
-        creditCard: 94356754545
+        creditCard: 94356754545,
+        license: "DL12344563456",
     },
     {
         id: 3,
@@ -21,7 +23,8 @@ let renters = [
         phone: "9412338778",
         billingAddress: "123 W Burlington Avenue",
         email: "christc@hotmail.com",
-        creditCard: 43456744561
+        creditCard: 43456744561,
+        license: "DL1234564324",
     },
     {
         id: 4,
@@ -29,7 +32,8 @@ let renters = [
         phone: "4123312312",
         billingAddress: "1000 Wapallo",
         email: "adams@hotmail.com",
-        creditCard: 53563453455
+        creditCard: 53563453455,
+        license: "DL12345678674",
     }
 ];
 
