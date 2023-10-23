@@ -12,7 +12,7 @@ async function loadData() {
         document.getElementById('phone').value = billing.renter.phone;
         document.getElementById('billingAddress').value = billing.renter.billingAddress;
         document.getElementById('creditCard').value = billing.renter.creditCard;
-        document.getElementById('zip').value = billing.renter.zip;
+        document.getElementById('license').value = billing.renter.license;
         
         document.getElementById('make').value = billing.car.make;
         document.getElementById('model').value = billing.car.model;

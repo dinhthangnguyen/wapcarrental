@@ -24,16 +24,16 @@ let billings = [
         status: "Canceled"
     },
     {
-        id: 3,
+        id: 4,
         carId: 3,
         renterId: 2,
         orderNumber: "KKTIKJ3HV1",
         status: "Paid"
     },
     {
-        id: 4,
+        id: 5,
         carId: 1,
-        renterId: 6,
+        renterId: 4,
         orderNumber: "54FGHPO485",
         status: "Unpaid"
     }
@@ -53,7 +53,15 @@ class Billing {
     }
     
     static getById(id){
+        console.log(billings);
         let billing = billings.find(o => o.id === id);
+        if(typeof billing != 'Billing'){
+            let index = billings.findIndex(o => o.id === id);
+            var {id , carId, renterId, orderNumber, status} = billing;
+            billing = new Billing(id, carId, renterId, orderNumber, status);
+            billings.splice(index,1,billing);
+        }
+        console.log(billings);
         this.getAddiontalInfo(billing);
         return billing;
     }
