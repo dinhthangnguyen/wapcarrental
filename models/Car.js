@@ -195,6 +195,7 @@ class Car {
         this.id = id;
         this.make = make;
         this.year = year;
+        this.model = model;
         this.price = price; // per day
         this.available = true;
         this.billings = [];
@@ -326,6 +327,10 @@ class Car {
         cars.push(car);
     }
 
+    create() {
+        cars.push(this);
+        return this;
+    }
     update() {
         this.id = parseInt(this.id);
         this.ownerId = parseInt(this.ownerId);

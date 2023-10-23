@@ -27,46 +27,34 @@ let billingController = {
         let id = parseInt(req.params.id);
         if(id){
             let billing = Billing.getById(id);
-            if(billing && billing.status != Billing.Status.Unpaid)
+            if(billing){
+                if(billing.status != Billing.Status.Unpaid)
                 res.status(500).json({ message: "Invalid Status"});
-            else{
-                billing = billing.pay();
+                else{
+                    billing = billing.pay();
                 if(billing){
                     res.status(200).json(billing);
                 } else{
                     res.status(404).json({ message: "Billing not found."});
                 }
             }
-        }   
-    },
-    confirmPayBilling: function(req, res, next){
-        let id = parseInt(req.params.id);
-        if(id){
-            let billing = Billing.getById(id);
-            if(billing && billing.status != Billing.Status.Paid)
-                res.status(500).json({ message: "Invalid Status"});
-            else{
-                billing = billing.confirmPay();
-                if(billing){
-                    res.status(200).json(billing);
-                } else{
-                    res.status(404).json({ message: "Billing not found."});
-                }
-            }
+            } 
         }   
     },
     cancelBilling: function(req, res, next){
         let id = parseInt(req.params.id);
         if(id){
             let billing = Billing.getById(id);
-            if(billing && (billing.status === Billing.Status.Closed || billing.status === Billing.Status.Canceled))
-                res.status(500).json({ message: "Invalid Status"});
-            else{
-                billing = billing.cancelPay();
-                if(billing){
-                    res.status(200).json(billing);
-                } else{
-                    res.status(404).json({ message: "Billing not found."});
+            if(billing){
+                if(billing.status === Billing.Status.Canceled)
+                    res.status(500).json({ message: "Invalid Status"});
+                else{
+                    billing = billing.cancelPay();
+                    if(billing){
+                        res.status(200).json(billing);
+                    } else{
+                        res.status(404).json({ message: "Billing not found."});
+                    }
                 }
             }
         }   

@@ -23,11 +23,6 @@ async function loadData() {
         document.getElementById('orderNumber').value = billing.orderNumber;
         document.getElementById('total').value = billing.total;
 
-        if(billing.status != 'Paid')
-            document.getElementById('bntConfirmPayment').setAttribute('class','btn btn-primary d-none');
-        else
-            document.getElementById('bntConfirmPayment').setAttribute('class','btn btn-primary');
-
         if(billing.status != 'Unpaid' && billing.status != 'Paid')
             document.getElementById('btnCancel').setAttribute('class','btn btn-warning d-none');
         else

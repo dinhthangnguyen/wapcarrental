@@ -15,6 +15,7 @@ carRouter.put('/api/:id', carController.updateCar);
 carRouter.delete('/api/:id/images', carController.deleteImage);
 carRouter.post('/api/:id/images', carController.addImage);
 carRouter.delete('/api/:id', carController.deleteCar);
+carRouter.post('/api', carController.addCar);
 
 carRouter.get("/:id", async (req, res, next) => {
     let frameSet = await fsPromise.readFile(path.join(__dirname, "../public/view/common/index.html"));

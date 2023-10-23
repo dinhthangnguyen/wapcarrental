@@ -124,7 +124,7 @@ function addRowToTable(id, img, color) {
 
 function showImagePreview(img) {
     const imagePreviewElement = document.getElementById('imagePreview');
-
+    imagePreviewElement.removeAttribute("class");
     // Update the source of the image element
     imagePreviewElement.src = [window.location.origin, "img", img].join("/");
     imagePreviewElement.style.maxWidth = '100%';
