@@ -11,11 +11,16 @@ document.getElementById("btnSearch").addEventListener("click", async function (e
     }
 
     var email = document.getElementById("emailInput").value;
-    let response = await fetch(`${serverUrl}/billings/api/track-email/${email}`);
+    var license = document.getElementById("licenseInput").value;
+    let response = await fetch(`${serverUrl}/billings/api/track-email/${email}/${license}`);
+
     if (response.ok) {
         document.getElementById("tbody").innerHTML = "";
+        document.getElementById("tableBox").classList.remove("d-none");
+
         let { renter, billings } = await response.json();
         for (const bill of billings) {
+            console.log(bill);
             let endDate = bill.endDate ? new Date(bill.endDate).toLocaleDateString('en-US') : "N/A"
             addRowToTable(
                 bill.orderNumber,

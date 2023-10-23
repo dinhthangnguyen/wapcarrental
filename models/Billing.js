@@ -95,6 +95,7 @@ class Billing {
     static getAddiontalInfo(billing) {
         billing.car = Car.getById(billing.carId);
         billing.renter = Renter.getById(billing.renterId);
+        // TODO: this is wrong
         billing.total = billing.car.price;
     }
 

@@ -13,19 +13,22 @@ let billingController = {
             }
         }    
     },
-    getBillingsByEmail: function(req, res, next){
-        let email = req.params.email;
-        if(!email){
-            res.status(400).json({"message": "Bad request, please provide email"})
+    getBillingsByEmailAndLicense: function(req, res, next){
+        let {email, license} = req.params;
+        if(!email || !license){
+            res.status(400).json({"message": "Bad request, please provide email and license"})
             return;
         }
-        let renter = Renter.getRenterByEmailOrPhone(email);
-        delete renter.creditCard;
-        
+        let renter = Renter.getRenterByEmailOrPhone(email);        
         if (!renter) {
             res.status(404).json({"message": "Not found"})
             return;
         }
+        
+        if (renter.license.toLowerCase() !== license.toLowerCase()) {
+            res.status(404).json({"message": "Not found"})
+        }
+
         let billings = Billing.getBillingsByRenterId(renter.id);
         if(billings){
             res.status(200).json({renter, billings});

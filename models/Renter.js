@@ -58,6 +58,7 @@ class Renter {
 
     static getRenterByEmailOrPhone(email) {
         let renter = renters.find(o => o.email.toLowerCase() === email.toLowerCase());
+        delete renter.creditCard;
         if (renter) {
             return renter;
         } else {
