@@ -1,5 +1,3 @@
-const { rent } = require("../controllers/renterController");
-
 let renters = [
     {
         id: 1,
@@ -8,25 +6,25 @@ let renters = [
         billingAddress: "1001 N Main Street",
         email: "vincent@gmail.com",
         creditCard: 94356744561,
-        license: "DL1234124",
+        license: "DL1234567",
       },
       {
         id: 2,
         name: "Steven N",
         phone: "414345545",
         billingAddress: "1002 N 4th Street",
-        email: "gtran@miu.edu",
+        email: "steve@gmail.com",
         creditCard: 94356754545,
-        license: "DL12344563456",
+        license: "DL7654321",
     },
     {
         id: 3,
         name: "Christ Cruise",
         phone: "9412338778",
         billingAddress: "123 W Burlington Avenue",
-        email: "christc@hotmail.com",
+        email: "christ@hotmail.com",
         creditCard: 43456744561,
-        license: "DL1234564324",
+        license: "DL1111111",
     },
     {
         id: 4,
@@ -35,7 +33,7 @@ let renters = [
         billingAddress: "1000 Wapallo",
         email: "adams@hotmail.com",
         creditCard: 53563453455,
-        license: "DL12345678674",
+        license: "DL9999999",
     }
 ];
 

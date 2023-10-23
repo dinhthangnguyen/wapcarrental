@@ -5,18 +5,18 @@ let billings = [
     {
         id: 1,
         carId: 2,
-        renterId: 2,
+        renterId: 1,
         orderNumber: "FH35DOOTO1",
         status: "Unpaid",
         price: 40,
-        startDate: Date.now(),
-        endDate: Date.now(),
+        startDate: 1697914560000,
+        endDate:"",
         total: 80,
     },
     {
         id: 2,
         carId: 3,
-        renterId: 4,
+        renterId: 5,
         orderNumber: "FG5GTWB3434",
         status: "Paid",
         price: 40,
@@ -56,7 +56,18 @@ let billings = [
         startDate: Date.now(),
         endDate: Date.now(),
         total: 80,
-    }
+    },
+    {
+        id: 6,
+        carId: 5,
+        renterId: 1,
+        orderNumber: "FH35DOOTD1",
+        status: "Paid",
+        price: 110,
+        startDate: 1697914560000,
+        endDate:1698000960000,
+        total: 220,
+    },
 ]
 class Billing {
     static Status = {
@@ -77,7 +88,6 @@ class Billing {
     }
 
     static getById(id) {
-        console.log(billings);
         let billing = billings.find(o => o.id === id);
         if (typeof billing != 'Billing') {
             let index = billings.findIndex(o => o.id === id);
@@ -85,7 +95,6 @@ class Billing {
             billing = new Billing(id, carId, renterId, orderNumber, status);
             billings.splice(index, 1, billing);
         }
-        console.log(billings);
         this.getAddiontalInfo(billing);
         return billing;
     }
@@ -95,14 +104,19 @@ class Billing {
     static getAddiontalInfo(billing) {
         billing.car = Car.getById(billing.carId);
         billing.renter = Renter.getById(billing.renterId);
-        if(billing.status === Billing.Status.Unpaid)
-            this.calculateTotal(billing);
     }
 
     static getBillingsByRenterId(id) {
         return billings.filter(e => e.renterId === parseInt(id)).map(e => {
             this.getAddiontalInfo(e);
             return e;
+        }).sort((e1,e2)=> {
+            if (e1.startDate > e2.startDate) {
+                return 1;
+            } else if (e1.startDate < e2.startDate) {
+                return -1;
+            }
+            return 0;
         });
     }
 
@@ -140,29 +154,37 @@ class Billing {
         ownerBillings.forEach(o => this.getAddiontalInfo(o));
         return ownerBillings;
     }
-    pay() {
-        this.status = Billing.Status.Paid;
-        this.endDate = Date.now();
-        return this;
+    static pay(renterId, billId) {
+        let index = billings.findIndex(e=> {
+            return e.renterId === parseInt(renterId) && e.id === parseInt(billId);
+        })
+        if (index === -1) {
+            return;
+        }
+        
+        billings[index].status = Billing.Status.Paid;
+        billings[index].endDate = Date.now();
+        let days = Math.ceil((billings[index].endDate - billings[index].startDate)/(24*3600*1000));
+        billings[index].total = billings[index].price * (days <= 0 ? 1: days);
+        return billings[index];
     }
-    cancelPay() {
-        this.status = Billing.Status.Canceled;
-        this.endDate = Date.now();
-        return this;
+
+    static cancelBill(renterId, billId) {
+        let index = billings.findIndex(e=> {
+            return e.renterId === parseInt(renterId) && e.id === parseInt(billId);
+        })
+        if (index === -1) {
+            return;
+        }
+        
+        billings[index].status = Billing.Status.Canceled;
+        billings[index].endDate = Date.now();
+        billings[index].total = 0;
+        return billings[index];
     }
+
     create() {
         billings.push(this);
-    }
-    static calculateTotal(billing) {
-        let endDaTe = billing.endDaTe;
-        if(!endDaTe)
-            endDaTe = Date.now();
-        let times = billing.endDate - billing.startDate;
-        let days = Math.ceil(times / (1000 * 60 * 60 * 24));
-        billing.total = billing.price * days;
-    }
-    static countByCarId(carId){
-        return billings.filter(o => o.carId === carId).length;
     }
 }
 

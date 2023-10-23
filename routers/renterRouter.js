@@ -4,12 +4,7 @@ const path = require('path');
 
 const renterRouter = express.Router();
 const renterController = require('../controllers/renterController');
-const billingController = require('../controllers/billingController');
-
 renterRouter.post("/api",renterController.rent);
-// renterRouter.post('/api/pay', billingController.payBilling);
-// renterRouter.post('/api/cancel', billingController.cancelBilling);
-
 
 renterRouter.get("/", async (req, res, next) => {
     let frameSet = await fsPromise.readFile(path.join(__dirname, "../public/view/common/index.html"));
@@ -22,8 +17,6 @@ renterRouter.get("/", async (req, res, next) => {
     htmlContent = htmlContent.replace('<script id="additional-script">', `<script id="additional-script">${script.toString()}`);
     res.send(htmlContent);
 });
-
-
 
 renterRouter.get("/:renterId/billing/:billId", async (req,res,next)=> {
     let frameSet = await fsPromise.readFile(path.join(__dirname, ".." , "public", "view", "common", "index.html"));

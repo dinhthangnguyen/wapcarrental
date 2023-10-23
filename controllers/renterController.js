@@ -7,7 +7,6 @@ const idGenerator = require("../commons/idgenerator");
 let renterController = {
     rent(req, res, next) {
         let { name, email, address, license, phone, card, carID } = req.body;
-        console.log(name, email,address,license,phone,card,carID);
         if (!email || !name || !address || !license || !phone || !carID || !card) {
             res.status(400).json({ "message": "Bad request, please provide correct information" });
             return;
