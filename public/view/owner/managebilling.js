@@ -7,10 +7,8 @@ async function loadData() {
     let response = await fetch(`${serverUrl}/owners/api/${id}/billings`);
     if(response.ok){
         let billings = await response.json();
-        let bool = false;
         for (let billing of billings) {
-            addRowToTable(id, billing, bool);
-            bool = !bool;
+            addRowToTable(id, billing);
         }
     }
 }
@@ -23,14 +21,22 @@ document.getElementById('btnBack').addEventListener("click", (event) => {
     window.location.href = `${serverUrl}/owners/${id}`;
 })
 
-function addRowToTable(id, billing, color) {
+function addRowToTable(id, billing) {
     let row = document.createElement("tr");
     row.setAttribute("id", billing.id);
     row.addEventListener("click", () => {
         openDetail(id, billing.id);
     })
-    row.className = color ? "table-success" : "table-secondary";
-    let items = [`${billing.car.make} ${billing.car.model} ${billing.car.year}`,billing.renter.name,billing.orderNumber,billing.total, billing.status];
+
+    if (billing.status === "Canceled") {
+        row.className = "table-danger";
+    } else if (billing.status === "Paid") {
+        row.className = "table-success";
+    } else {
+        row.className = "table-secondary";
+    }
+
+    let items = [`${billing.car.make} ${billing.car.model} ${billing.car.year}`,billing.renter.name,billing.orderNumber,`${"$"}${billing.total}`, billing.status];
     for (item of items) {
         let col = document.createElement("td");
         col.appendChild(document.createTextNode(item));
