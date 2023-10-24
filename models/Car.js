@@ -410,26 +410,8 @@ class Car {
         }).slice(0, limit);
         return array;
     }
-
-    static getHotPicks(limit) {
-        let array = cars
-            .filter(car => car.available);
-
-            // TODO: circular importing
-        // for(let car of array){
-        //     car.BillingCount = Billing.countByCarId(car.id);
-        // }
-
-        array = array.sort((a1, a2) => {
-            if (a1.BillingCount < a2.BillingCount) {
-                return 1;
-            }
-            else if (a1.BillingCount > a2.BillingCount) {
-                return -1;
-            }
-            return 0;
-        }).slice(0, limit);
-        return array;
+    static getAvailable(){
+        return cars.filter(car => car.available);
     }
 }
 
