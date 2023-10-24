@@ -96,7 +96,7 @@ let billingController = {
             return;
         }
         let bill = Billing.pay(renterId, billId);
-        bill.available = true;
+        Car.getById(bill.carId).available = true;
         if(bill){
             res.status(200).json(bill);
         } else{
@@ -110,7 +110,7 @@ let billingController = {
             return;
         }
         let bill = Billing.cancelBill(renterId, billId);
-        bill.available = true;
+        Car.getById(bill.carId).available = true;
         if(bill){
             res.status(200).json(bill);
         } else{

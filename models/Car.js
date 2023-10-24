@@ -347,7 +347,7 @@ class Car {
             cars[index].year = year;
             cars[index].price = parseInt(price);
             cars[index].city = city;
-            cars[index].model = description;
+            cars[index].description = description;
         }
         return cars[index];
     }
@@ -380,10 +380,6 @@ class Car {
             car.images.push(img);
         }
         return car;
-    }
-
-    addBill(bill) {
-        this.billings.push(bill);
     }
 
     static getByOwnerId(ownerId) {
