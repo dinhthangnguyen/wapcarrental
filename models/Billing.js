@@ -31,7 +31,7 @@ let billings = [
         price: 40,
         startDate: Date.now(),
         endDate: Date.now(),
-        total: 80,
+        total: 0,
     },
     {
         id: 4,

@@ -339,15 +339,17 @@ class Car {
         cars.push(this);
         return this;
     }
-    update() {
-        this.id = parseInt(this.id);
-        this.ownerId = parseInt(this.ownerId);
-        let index = cars.findIndex(o => o.id === this.id);
-        if(index > -1){
-            cars.splice(index, 1, this);
-            return this;
+    static update(id, make, model, year, price, city, description) {
+        let index = cars.findIndex(o => o.id === parseInt(id));
+        if(index !== -1){
+            cars[index].make = make;
+            cars[index].model = model;
+            cars[index].year = year;
+            cars[index].price = parseInt(price);
+            cars[index].city = city;
+            cars[index].model = description;
         }
-        return this;
+        return cars[index];
     }
     
     static getMaxId() {

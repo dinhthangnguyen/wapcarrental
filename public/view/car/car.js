@@ -7,6 +7,7 @@ window.onload = async function () {
     let response = await fetch(`${serverUrl}/cars/api/${carID}`);
     if (response.ok) {
         let car = await response.json();
+        console.log(car);
         loadUI(car);
     }
     else {
