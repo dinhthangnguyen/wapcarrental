@@ -103,7 +103,7 @@ let cars = [
         ],
         city: "Mount Pleasant",
         available: true,
-        description: "Embark on your journey with the 2021 Toyota RAV4, a versatile and reliable SUV. With its modern design and advanced features, the RAV4 is perfect for both city driving and off-road adventures. Available for rent in Ottumwa, this SUV offers a comfortable and spacious interior, making it an ideal choice for families and adventurers alike."
+        description: "The statement of Vietnam technology prowness. First Southeast Asian car exported to the US. Modern, electric and sexy design."
     },
     {
         id: 7,

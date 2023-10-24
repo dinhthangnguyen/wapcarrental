@@ -14,8 +14,8 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text" style="max-height: 3em; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
-                                                        <p class="card-text">Price per day ${"$"}${car.price}</p>
-                                                        <p class="card-text">City: ${car.city}</p>
+                                                        <h5 class="card-text text-success">${"$"}${car.price}/Day</h5>
+                                                        <p class="card-text text-info">City: ${car.city}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
@@ -36,8 +36,8 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text" style="max-height: 3em; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
-                                                        <p class="card-text">Price per day ${"$"}${car.price}</p>
-                                                        <p class="card-text">City: ${car.city}</p>
+                                                        <h5 class="card-text text-danger">Only ${"$"}${car.price}/Day</h5>
+                                                        <p class="card-text text-info">City: ${car.city}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
@@ -58,8 +58,8 @@ async function loadData() {
                                                     <div class="card-body d-flex flex-column">
                                                         <h5 class="card-title">${car.make} ${car.model} ${car.year}</h5>
                                                         <p class="card-text" style="max-height: 3em; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
-                                                        <p class="card-text">Price per day ${"$"}${car.price}</p>
-                                                        <p class="card-text">City: ${car.city}</p>
+                                                        <h5 class="card-text text-success">${"$"}${car.price}/Day</h5>
+                                                        <p class="card-text text-info">City: ${car.city}</p>
                                                         <a href="/cars/${car.id}" class="btn btn-primary mt-auto">Rent Now!</a>
                                                     </div>                                            
                                                 </div>
