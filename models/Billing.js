@@ -89,8 +89,12 @@ class Billing {
         let billing = billings.find(o => o.id === id);
         if (typeof billing != 'Billing') {
             let index = billings.findIndex(o => o.id === id);
-            var { id, carId, renterId, orderNumber, status } = billing;
-            billing = new Billing(id, carId, renterId, orderNumber, status);
+            var { id, carId, renterId, orderNumber, status, startDate, endDate,price,total } = billing;
+            billing = new Billing(id, carId, renterId, orderNumber, price);
+            billing.status = status;
+            billing.startDate = startDate;
+            billing.endDate = endDate;
+            billing.total = total;
             billings.splice(index, 1, billing);
         }
         return billing;
