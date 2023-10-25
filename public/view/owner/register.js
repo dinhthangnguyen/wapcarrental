@@ -1,6 +1,6 @@
 const serverUrl = 'http://localhost:3000';
-async function registerOwner(name, phone, billingAddress, zip, email, creditCard) {
-    let obj = { name, phone, billingAddress, zip, email, creditCard };
+async function registerOwner(name, phone, billingAddress, zip, email) {
+    let obj = { name, phone, billingAddress, zip, email };
     let setting = {
         method: "POST",
         body: JSON.stringify(obj),
@@ -25,8 +25,11 @@ document.getElementById('btnRegister').addEventListener("click", (event) => {
     let name = document.getElementById('name').value;
     let phone = document.getElementById('phone').value;
     let billingAddress = document.getElementById('billingAddress').value;
-    let creditCard = document.getElementById('creditCard').value;
     let zip = document.getElementById('zip').value;
 
-    registerOwner(name, phone, billingAddress, zip, email, creditCard);
+    registerOwner(name, phone, billingAddress, zip, email);
+})
+
+document.getElementById('btnBack').addEventListener("click", (event) => {
+    window.location.href = `${serverUrl}/owners`;
 })

@@ -26,3 +26,7 @@ document.getElementById("btnlogin").addEventListener("click", async (event) => {
     console.error('Fetch error:', error);
     }
 })
+
+document.getElementById("btnregister").addEventListener("click", () =>{
+    window.location.href = "/owners/register";
+})
