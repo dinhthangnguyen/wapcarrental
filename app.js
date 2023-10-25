@@ -33,10 +33,6 @@ app.use("/rent",renterRouter);
 app.use("/abouts",aboutRouter);
 app.use("/billings",billingRouter);
 
-// app.use("/rent", (req,res,next)=> {
-//     res.sendFile(path.join(__dirname,"/public/view/rent/rent.html"));
-// })
-
 app.post('/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded.' });
