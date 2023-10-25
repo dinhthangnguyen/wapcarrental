@@ -11,14 +11,13 @@ async function loadData() {
         document.getElementById('name').value = owner.name;
         document.getElementById('phone').value = owner.phone;
         document.getElementById('billingAddress').value = owner.billingAddress;
-        document.getElementById('creditCard').value = owner.creditCard;
         document.getElementById('zip').value = owner.zip;
 
     }
 }
 
-async function updateOwner(id, name, phone, billingAddress, zip, email, creditCard) {
-    let obj = { id, name, phone, billingAddress, zip, email, creditCard };
+async function updateOwner(id, name, phone, billingAddress, zip, email) {
+    let obj = { id, name, phone, billingAddress, zip, email};
     let setting = {
         method: "PUT",
         body: JSON.stringify(obj),
@@ -60,10 +59,9 @@ document.getElementById('btnUpdate').addEventListener("click", (event) => {
     let name = document.getElementById('name').value;
     let phone = document.getElementById('phone').value;
     let billingAddress = document.getElementById('billingAddress').value;
-    let creditCard = document.getElementById('creditCard').value;
     let zip = document.getElementById('zip').value;
 
-    updateOwner(id, name, phone, billingAddress, zip, email, creditCard);
+    updateOwner(id, name, phone, billingAddress, zip, email);
 })
 
 document.getElementById('btnManagecar').addEventListener("click", (event) => {

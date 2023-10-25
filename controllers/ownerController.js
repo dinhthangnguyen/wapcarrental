@@ -57,10 +57,10 @@ let ownerController = {
         }
     },
     updateOwner: function (req, res, next) {
-        let { name, phone, billingAddress, zip, email, creditCard } = req.body;
+        let { name, phone, billingAddress, zip, email } = req.body;
         id = parseInt(req.params.id);
 
-        let updatedOwner = new Owner(id, name, phone, billingAddress, zip, email, creditCard).update();
+        let updatedOwner = new Owner(id, name, phone, billingAddress, zip, email).update();
         if (updatedOwner) {
             res.status(200).json(updatedOwner);
         } else {
@@ -68,14 +68,14 @@ let ownerController = {
         }
     },
     registerOwner: function (req, res, next) {
-        let { id, name, phone, billingAddress, zip, email, creditCard } = req.body;
+        let { id, name, phone, billingAddress, zip, email } = req.body;
         id = Owner.getMaxId() + 1;
 
         if (id && name && phone && email) {
             if (Owner.getIdByEmail(email)) {
                 res.status(400).json({ message: "Email existed." });
             } else {
-                let newOwner = new Owner(id, name, phone, billingAddress, zip, email, creditCard).create();
+                let newOwner = new Owner(id, name, phone, billingAddress, zip, email).create();
                 res.status(201).json(newOwner);
             }
         } else {
